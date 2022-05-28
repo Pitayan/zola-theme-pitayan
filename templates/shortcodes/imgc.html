@@ -1,0 +1,23 @@
+{%- set respSizes = [600, 900, 1200, 1500] -%}
+{%- set initSrc = resize_image(path=path, width=600, op='fit_width') -%}
+<div class="img bg-black dark:bg-blue-800">
+  <img 
+    class="lazy" 
+    aspect-ratio="{{ width }} / {{ height }}" 
+    sizes="(min-width: 1024px) 100vw, 50vw" 
+    src="{{ initSrc.url }}" 
+    srcset="
+    {% for size in respSizes -%}
+      {%- if size <= width -%}
+        {%- set imgSrcset = resize_image(path=path, width=size, op='fit_width') -%}
+        {{ imgSrcset.url }} {{ size }}w
+        {%- if not loop.last -%}, {% endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+    "
+    alt="{{ alt }}" 
+    width="{{ width }}" 
+    height="{{ height }}" 
+    loading="lazy"
+  />
+</div>

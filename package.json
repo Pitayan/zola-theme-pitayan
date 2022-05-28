@@ -1,0 +1,31 @@
+{
+  "name": "zola_twcss",
+  "description": "This is a starter set for the [Zola](https://getzola.org) [static site generator (SSG)](https://www.jamstack.org/generators), based on the appearance of my website at [brycewray.com](https://www.brycewray.com).",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf public && rimraf static/css",
+    "initcss": "node initcss.js",
+    "start": "TAILWIND_MODE=watch NODE_ENV=development npm-run-all clean initcss --parallel dev:*",
+    "dev:css": "postcss assets/css/style.css -o ./static/css/style.css -w",
+    "dev:serve": "zola serve",
+    "build": "NODE_ENV=production npm-run-all clean prod:postcss prod:build",
+    "prod:css": "postcss assets/css/style.css -o ./static/css/style.css",
+    "prod:build": "zola build"
+  },
+  "author": "",
+  "license": "MIT",
+  "browserslist": [
+    "last 4 versions",
+    "> 1%",
+    "maintained node versions"
+  ],
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0",
+    "postcss-import": "^14.1.0",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^3.0.24"
+  }
+}

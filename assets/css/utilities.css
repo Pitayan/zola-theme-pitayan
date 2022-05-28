@@ -1,0 +1,41 @@
+@layer utilities {
+  .mark-w-sm {
+    @apply max-w-lg;
+    @apply mx-auto;
+  }
+
+  .mark-w-md {
+    @apply max-w-2xl;
+    @apply mx-auto;
+  }
+
+  .mark-w-lg {
+    @apply max-w-3xl;
+    @apply mx-auto;
+  }
+
+  .mark-w-2l {
+    @apply max-w-4xl;
+    @apply mx-auto;
+  }
+
+  .border-t-white {
+    border-top-color: theme("colors.white");
+  }
+
+  .border-t-black {
+    border-top-color: theme("colors.black");
+  }
+
+  .text-inverted {
+    color: theme("colors.gray.200");
+  }
+
+  .bg-inverted {
+    background-color: theme("colors.gray.200");
+  }
+
+  .border-inverted {
+    border-color: theme("colors.gray.200");
+  }
+}

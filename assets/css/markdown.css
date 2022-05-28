@@ -1,0 +1,145 @@
+.markdown {
+  @apply mark-w-sm;
+  @apply md:mark-w-md;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply pt-6;
+    @apply mt-6;
+    @apply mb-6;
+    @apply relative;
+
+    /* Display heading anchor */
+    &:hover {
+      a.heading-anchor {
+        @apply md:opacity-100;
+      }
+    }
+  }
+
+  a {
+    @apply text-blue-600;
+
+    &.heading-anchor {
+      @apply pr-1;
+      @apply opacity-0;
+      @apply transition duration-75;
+      @apply top-auto;
+
+      span {
+        @apply text-blue-600;
+      }
+    }
+
+    &:hover {
+      @apply underline;
+    }
+
+    &:active,
+    &:focus {
+      @apply outline-none;
+    }
+
+    &:focus {
+      @apply ring-2 ring-indigo-300 ring-offset-1;
+    }
+
+    &[disabled],
+    &:disabled,
+    &.disabled {
+      @apply cursor-default;
+      @apply pointer-events-none;
+      @apply text-gray-400;
+    }
+  }
+
+  table {
+    @apply mb-8;
+  }
+
+  pre {
+    @apply mb-8;
+    @apply py-4 px-6;
+  }
+
+  blockquote {
+    @apply mb-10;
+
+    p {
+      @apply mb-0;
+    }
+  }
+
+  p {
+    @apply leading-8;
+    @apply mb-10;
+  }
+
+  hr {
+    @apply border-t border-solid border-gray-300;
+    @apply my-8 mx-auto;
+    @apply relative;
+    @apply overflow-visible;
+    @apply w-1 h-1;
+    @apply bg-gray-800;
+    @apply rounded-full;
+    @apply border-none;
+    @apply my-16;
+
+    /* Dark Mode*/
+    @apply dark:!bg-inverted;
+
+    &:before,
+    &:after {
+      @apply dark:!bg-inverted;
+    }
+
+    &:before {
+      @apply absolute;
+      @apply w-1 h-1;
+      @apply bg-gray-800;
+      @apply -left-6;
+      @apply rounded-full;
+
+      content: "";
+    }
+
+    &:after {
+      @apply absolute;
+      @apply w-1 h-1;
+      @apply bg-gray-800;
+      @apply -right-6;
+      @apply rounded-full;
+
+      content: "";
+    }
+  }
+
+
+  ul,
+  ol {
+    @apply mb-12;
+  }
+}
+
+/* FIXME: dark mode style overriding not work */
+.dark {
+  .markdown {
+    hr {
+      @apply !bg-inverted;
+    }
+
+    a {
+      @apply text-blue-400;
+
+      &.heading-anchor span {
+        @apply !text-blue-400;
+      }
+    }
+  }
+}
+

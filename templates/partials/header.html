@@ -1,0 +1,24 @@
+<header class="mt-8 mb-4 flex justify-between content-center">
+  <a href="/" class="flex justify-center items-center space-x-2">
+    {% include "partials/siteLogo.html" %}
+    <b class="text-3xl text-gray-900 font-bold block font-serif font-black">
+      Pitayan
+    </b>
+  </a>
+  <nav role="navigation" class="nav">
+    <ul class="flex justify-between items-center list-none space-x-2">
+      <li class="nav__item">
+        <button class="ghost-button flex items-center space-x-3">
+          {% include "partials/searchIcon.html" %}
+          <span class="block">Search</span>
+        </button>
+      </li>
+      <li class="nav__item">
+        <button class="fill-button flex items-center space-x-3">
+          {% include "partials/sunIcon.html" %}
+          <span class="block">Dark</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>

@@ -1,0 +1,336 @@
+.site-tag {
+  @apply rounded-sm;
+  @apply py-0.5 px-1;
+  @apply text-sm;
+  @apply text-gray-800;
+  @apply bg-gray-200;
+  @apply hover:bg-gray-300;
+  @apply transition-colors;
+  @apply duration-150;
+  @apply ease-in-out;
+
+  /* Dark Mode */
+  @apply dark:hover:bg-gray-700;
+  @apply dark:bg-gray-800;
+  @apply dark:text-gray-400;
+}
+
+.site-link {
+  @apply text-lg;
+  @apply font-medium;
+  @apply cursor-pointer;
+  @apply opacity-80;
+  @apply hover:underline;
+  @apply decoration-1;
+  @apply underline-offset-2;
+}
+
+.avatar {
+  @apply rounded;
+  @apply inline-block;
+  @apply font-normal;
+  @apply leading-normal;
+  @apply relative;
+  @apply align-middle;
+  /* @apply h-8; */
+  /* @apply w-8; */
+
+  img {
+    @apply h-full;
+    @apply w-full;
+    @apply rounded;
+    @apply z-10;
+  }
+
+  &[data-initial]::before {
+    @apply text-sm;
+    @apply absolute;
+    @apply z-0;
+    @apply top-1/2;
+    @apply left-1/2;
+
+    content: attr(data-initial);
+    color: currentColor;
+    transform: translate(-50%, -50%);
+  }
+
+  &-rounded {
+    @apply rounded-full;
+
+    img {
+      @apply rounded-full;
+    }
+  }
+}
+
+.subscription {
+  &-container {
+    @apply mx-auto;
+    @apply my-8;
+    @apply flex flex-wrap justify-between;
+  }
+
+  &-title {
+    @apply font-normal;
+    @apply md:text-5xl text-3xl;
+    @apply !mt-0 !mb-8;
+  }
+
+  &-content {
+    @apply leading-tight;
+    @apply mb-12;
+  }
+
+  &-action {
+    @apply w-[28rem];
+    @apply md:space-x-2;
+  }
+
+  &-message {
+    @apply hidden;
+  }
+}
+
+.pagination {
+  @apply text-lg;
+  @apply block;
+  @apply list-none;
+  @apply my-4 mx-0;
+  @apply px-0;
+
+  &-item {
+    @apply inline-block;
+    @apply py-1;
+    @apply rounded;
+
+    a {
+      @apply opacity-60;
+      @apply hover:opacity-100;
+      @apply transition-all;
+      @apply duration-150;
+      @apply ease-in-out;
+
+      @apply text-center;
+      @apply relative;
+      @apply px-4 py-1;
+
+      /* Dark Mode */
+      @apply dark:hover:opacity-100;
+      @apply dark:hover:text-white;
+
+      &:hover {
+        @apply underline;
+      }
+    }
+  }
+
+  &-item:first-of-type {
+    @apply font-semibold;
+
+    a {
+      @apply opacity-100;
+    }
+  }
+
+  &-item:last-of-type {
+    @apply font-semibold;
+
+    a {
+      @apply opacity-100;
+    }
+  }
+
+  &-item.active {
+    @apply text-2xl;
+    @apply font-semibold;
+
+    a {
+      @apply underline;
+      @apply cursor-pointer;
+      @apply pointer-events-none;
+      @apply opacity-100;
+    }
+  }
+}
+
+.selection-popup {
+  @apply absolute;
+  @apply flex;
+  @apply bg-black;
+  @apply text-white;
+  @apply text-lg;
+  @apply font-bold;
+  @apply rounded;
+  @apply px-3 py-2;
+
+  /* Dark Mode */
+  @apply dark:bg-white;
+  & * {
+    @apply text-white;
+    @apply dark:text-black;
+  }
+
+  &:after {
+    @apply absolute;
+    @apply left-0 right-0;
+    @apply -bottom-2;
+    @apply my-0 mx-auto;
+    @apply w-0 h-0;
+    @apply border-l-8 border-r-8 border-t-8;
+    @apply border-solid;
+    @apply border-t-black;
+
+    content: "";
+    border-left-color: transparent;
+    border-right-color: transparent;
+
+    /* Dark Mode */
+    @apply dark:border-t-white;
+  }
+}
+
+.panel {
+  &-image {
+    @apply relative;
+    @apply overflow-hidden;
+    @apply rounded;
+    @apply w-full;
+    @apply max-h-64;
+    @apply mb-8;
+  }
+
+  &-content {
+    @apply mx-auto;
+    @apply my-4;
+
+    /* Dark Mode */
+    @apply dark:text-gray-400;
+  }
+
+  &-footer {
+    @apply text-gray-400;
+    @apply text-base;
+  }
+}
+
+/**
+ * FIXME: For .pagination, dark:!text-inverted didn't work out properly since <a> tag is already styled
+ */
+/* Dark Mode*/
+.dark {
+  .pagination {
+    &-item {
+      a {
+        @apply !text-inverted;
+      }
+    }
+  }
+}
+
+.notification {
+  @apply fixed;
+  @apply text-sm;
+  @apply leading-normal;
+  @apply z-40;
+  @apply w-96;
+  @apply bg-gray-200;
+
+  /* Dark mode */
+  @apply dark:bg-gray-800;
+
+  max-width: calc(100vw - 2rem);
+
+  & &-container {
+    @apply hidden;
+    @apply relative;
+    @apply py-4 px-6;
+    @apply mb-4;
+    @apply overflow-hidden;
+    @apply z-50;
+
+    &:target,
+    &.open {
+      @apply block;
+    }
+
+    &:last-child {
+      @apply mb-0;
+    }
+
+    .notification-title {
+      @apply inline-block;
+      @apply w-full;
+    }
+  }
+
+  &&-top-left,
+  &&-top-right,
+  &&-top-center {
+    @apply top-4;
+  }
+
+  &&-bottom-left,
+  &&-bottom-center,
+  &&-bottom-right {
+    @apply bottom-4;
+  }
+
+  &&-top-left,
+  &&-bottom-left {
+    @apply left-0;
+    @apply ml-4;
+  }
+
+  &&-top-center,
+  &&-bottom-center{
+    @apply right-1/2;
+    @apply translate-x-1/2;
+  }
+
+  &&-top-right,
+  &&-bottom-right {
+    @apply mr-4;
+    @apply right-0;
+
+    .notification-container {
+      @apply left-full;
+      @apply -translate-x-full;
+    }
+  }
+}
+
+.tooltip {
+  @apply relative;
+
+  & &-container {
+    @apply block;
+    @apply absolute;
+    @apply z-50;
+    @apply opacity-0;
+    @apply overflow-hidden;
+    @apply p-2;
+    @apply pointer-events-none;
+  }
+
+  &:hover,
+  &.active {
+    .tooltip-container {
+      @apply opacity-100;
+    }
+  }
+
+  &&-top-center {
+    .tooltip-container {
+      bottom: 120%;
+      left: 50%;
+      transform: translate(-50%, 4px);
+    }
+
+    &:hover,
+    &.active {
+      .tooltip-container {
+        transform: translate(-50%, -4px);
+      }
+    }
+  }
+}

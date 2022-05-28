@@ -1,0 +1,179 @@
+h1 {
+  @apply md:text-4xl;
+  @apply text-3xl;
+}
+
+h2 {
+  @apply md:text-3xl;
+  @apply text-2xl;
+}
+
+h3 {
+  @apply md:text-2xl;
+  @apply text-xl;
+}
+
+h4 {
+  @apply md:text-xl;
+  @apply text-lg;
+}
+
+h5 {
+  @apply md:text-lg;
+  @apply text-base;
+}
+
+h6 {
+  @apply md:text-base;
+  @apply text-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply leading-normal;
+  @apply font-semibold;
+
+  margin-bottom: 0.5em;
+}
+
+p {
+  @apply leading-normal;
+}
+
+a {
+  @apply break-all;
+  @apply sm:break-normal;
+}
+
+a,
+ins,
+u {
+  text-decoration-skip: ink edges;
+}
+
+blockquote {
+  @apply md:text-xl;
+  @apply text-lg;
+  @apply font-semibold;
+  @apply ml-0 mb-4;
+  @apply leading-relaxed;
+  @apply font-serif italic;
+  @apply border-l-4 border-solid border-black;
+  @apply pl-4 py-1;
+  @apply md:pl-6;
+
+  /* Dark Mode */
+  @apply dark:border-inverted;
+}
+
+address {
+  @apply mb-4;
+  @apply font-serif italic;
+  @apply leading-relaxed;
+}
+
+abbr {
+  @apply cursor-help;
+  @apply no-underline;
+  @apply border-b border-dotted;
+}
+
+kbd {
+  @apply rounded;
+  @apply text-sm;
+  @apply text-white;
+  @apply leading-none;
+  @apply p-1;
+  @apply bg-gray-800;
+}
+
+mark {
+  @apply bg-yellow-400;
+  @apply border-b-2 border-solid border-yellow-600;
+  @apply rounded;
+  @apply px-1 pt-px;
+
+  /* Dark Mode */
+  @apply dark:text-gray-900;
+}
+
+/* The inline code tag */
+code {
+  @apply font-mono;
+  @apply text-sm;
+  @apply rounded;
+  @apply py-0.5 px-1;
+  @apply break-words;
+}
+
+pre {
+  @apply relative;
+  @apply whitespace-pre;
+  @apply rounded;
+  @apply mb-4;
+
+  code {
+    @apply block;
+    @apply px-0 py-2;
+    @apply w-full;
+
+    color: inherit;
+    font-size: 80% !important;
+  }
+}
+
+ul,
+ol {
+  @apply py-0;
+  @apply my-4 mx-0;
+
+  ul,
+  ol {
+    @apply pr-0 pl-6 !my-4;
+  }
+
+  li {
+    @apply mt-4;
+    @apply leading-normal;
+
+    p {
+      display: initial;
+    }
+  }
+}
+
+ul {
+  @apply list-disc list-inside;
+
+  ul {
+    list-style-type: circle;
+  }
+}
+
+ol {
+  @apply list-decimal list-inside;
+
+  ol {
+    list-style-type: lower-alpha;
+
+    ol {
+      list-style-type: lower-roman;
+    }
+  }
+}
+
+dl {
+  @apply mr-0 ml-4 my-4;
+
+  dt {
+    @apply font-bold;
+  }
+
+  dd {
+    @apply mx-0 mt-4 mb-8;
+  }
+}

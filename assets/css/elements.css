@@ -1,0 +1,174 @@
+button {
+  @apply appearance-none;
+  @apply select-none;
+  @apply align-middle;
+  @apply font-medium;
+  @apply text-base md:text-lg;
+  @apply text-center;
+  @apply no-underline;
+  @apply leading-normal;
+  @apply whitespace-nowrap;
+  @apply inline-block;
+  @apply cursor-pointer;
+
+  &:focus {
+    @apply outline-none;
+    @apply ring-2 ring-indigo-200;
+  }
+
+  &[disabled],
+  &:disabled,
+  &.disabled {
+    @apply cursor-default;
+    @apply pointer-events-none;
+    @apply border-gray-400;
+    @apply !text-gray-400;
+    @apply !ring-0;
+    @apply !border-none;
+    @apply !bg-transparent;
+  }
+
+  &.fill-button,
+  &.ghost-button {
+    @apply rounded-full;
+    @apply py-2 px-6;
+    @apply md:py-3 md:px-8;
+    @apply transition duration-150;
+  }
+
+  &.fill-button {
+    @apply bg-gray-900;
+    @apply text-white;
+
+    &:hover {
+      @apply bg-indigo-600;
+    }
+
+    &:active {
+      @apply bg-indigo-700;
+    }
+  }
+
+  &.ghost-button {
+    @apply text-gray-800;
+    @apply bg-gray-100;
+
+    &:hover {
+      @apply bg-gray-200;
+    }
+
+    &:active {
+      @apply bg-gray-300;
+    }
+  }
+}
+
+input {
+  @apply appearance-none;
+  @apply border-none;
+  @apply leading-normal;
+  @apply shadow-none;
+  @apply max-w-full;
+  @apply w-full;
+  @apply py-1 px-0;
+  @apply text-xl;
+
+  /* Dark Mode */
+  @apply dark:bg-gray-900;
+
+  min-height: 36px;
+  font-stretch: 100%;
+
+  &:active,
+  &:focus {
+    @apply outline-none;
+  }
+
+  &::placeholder {
+    @apply text-base md:text-lg;
+    @apply text-gray-500;
+  }
+
+  &[disabled],
+  &:disabled,
+  &.disabled {
+    @apply cursor-default;
+    @apply pointer-events-none;
+    @apply text-gray-300;
+
+    &::placeholder {
+      @apply text-gray-300;
+    }
+  }
+
+  &.default-input {
+    @apply py-2 px-6;
+    @apply md:py-3 md:px-8;
+    @apply rounded-full;
+    @apply transition duration-150;
+    @apply bg-gray-100;
+  }
+}
+
+img {
+  @apply rounded;
+}
+
+figure {
+  @apply my-8;
+
+  img {
+    @apply mx-auto;
+  }
+
+  figcaption {
+    @apply text-center;
+    @apply text-sm;
+    @apply !text-gray-500;
+    @apply pt-2;
+  }
+}
+
+table {
+  @apply w-full;
+  @apply max-w-full;
+  @apply border-collapse;
+  @apply text-left;
+  @apply table-auto;
+
+  border-spacing: 0;
+
+  th,
+  td {
+    @apply p-4;
+    @apply border-none;
+    @apply border-b border-solid border-gray-300;
+  }
+
+  thead th {
+    @apply border-t-0;
+    @apply border-b-2 border-solid border-gray-300;
+  }
+
+  tbody {
+    tr {
+      @apply transition;
+      @apply duration-150;
+      @apply ease-in-out;
+      @apply leading-6;
+
+      &:nth-of-type(even) {
+        @apply hover:bg-gray-200;
+        @apply dark:hover:bg-gray-700;
+      }
+
+      &:nth-of-type(odd) {
+        @apply bg-gray-100;
+        @apply hover:bg-gray-200;
+
+        @apply dark:bg-gray-800;
+        @apply dark:hover:bg-gray-700;
+      }
+    }
+  }
+}

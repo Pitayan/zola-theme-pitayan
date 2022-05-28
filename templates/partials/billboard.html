@@ -1,0 +1,8 @@
+<div class="font-sans text-center relative h-auto px-8 pt-12 lg:px-16 2xl:px-32">
+  <div class="block w-full">
+    <h1 class="my-0 mx-auto text-center px-4 lg:px-12 2xl:px-16 pt-8 lg:pt-12 2xl:pt-16 text-4xl lg:text-6xl 2xl:text-7xl leading-none tracking-tight">{{ page.title }}</h1>
+    {% if page.extra.subtitle %}<h2 class="pt-3 lg:pt-4 2xl:pt-12 text-2xl lg:text-4xl 2xl:text-5xl">{{ page.extra.subtitle }}</h2>{% endif %}
+    {% if page.description %}<p class="pt-4 lg:pt-8 2xl:pt-16 text-lg lg:text-3xl 2xl:text-4xl lg:tracking-tight leading-snug 2xl:leading-tight">{{ page.description }}</p>{% endif %}
+    <p class="text-lg lg:text-xl 2xl:text-2xl"><strong>{{ page.date | date(format="%B %e, %Y", timezone="America/Chicago") }}</strong>{% if page.updated %}<br /><span style="font-size: 75%;">Last modified {{ page.updated | date(format="%B %e, %Y", timezone="America/Chicago") }}</span>{% endif %}</p>
+  </div>
+</div>
