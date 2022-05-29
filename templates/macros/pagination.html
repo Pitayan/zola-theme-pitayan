@@ -1,0 +1,27 @@
+{% macro render(paginator) %}
+<ul className="pagination text-center">
+  {% if paginator.previous %}
+  <li class="pagination-item">
+    <a href="{{paginator.previous}}">←</a>
+  </li>
+  {% endif %}
+  {% for i in range(start=1, end=paginator.number_pagers+1) %}
+  <li class="
+    pagination-item
+    {% if i == paginator.current_index %}active{% endif %}
+  ">
+    <a {% if i==paginator.current_index %} {% elif i> 1 %}
+      href="{{paginator.base_url}}{{i}}"
+      {% else %}
+      href="{{paginator.first}}"
+      {% endif %}
+      >{{i}}</a>
+  </li>
+  {% endfor %}
+  {% if paginator.next %}
+  <li class="pagination-item">
+    <a href="{{paginator.next}}">→</a>
+  </li>
+  {% endif %}
+</ul>
+{% endmacro %}

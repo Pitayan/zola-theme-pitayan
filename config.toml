@@ -31,7 +31,7 @@ build_search_index = false
 # Whether to do syntax highlighting
 # Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = true
-highlight_theme = "visual-studio-dark"
+highlight_theme = "ayu-mirage"
 
 # When set to "true", emoji aliases translated to their corresponding
 # Unicode emoji equivalent in the rendered Markdown files. (e.g.: :smile: => 😄)
@@ -53,7 +53,7 @@ smart_punctuation = true
 
 taxonomies = [
   { name = "categories", feed = true },
-  { name = "authors", feed = false },
+  { name = "authors", feed = true },
   { name = "keywords", feed = false },
 ]
 

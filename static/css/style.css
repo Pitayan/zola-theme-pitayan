@@ -427,10 +427,6 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
-.my-auto {
-  margin-top: auto;
-  margin-bottom: auto;
-}
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -443,14 +439,12 @@ body {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.mt-10 {
-  margin-top: 2.5rem;
+.my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
-.mr-auto {
-  margin-right: auto;
-}
-.ml-auto {
-  margin-left: auto;
+.mb-24 {
+  margin-bottom: 6rem;
 }
 .mr-2 {
   margin-right: 0.5rem;
@@ -470,6 +464,9 @@ body {
 .mt-8 {
   margin-top: 2rem;
 }
+.ml-auto {
+  margin-left: auto;
+}
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -487,6 +484,12 @@ body {
 }
 .mb-16 {
   margin-bottom: 4rem;
+}
+.mt-10 {
+  margin-top: 2.5rem;
+}
+.mr-auto {
+  margin-right: auto;
 }
 .mb-10 {
   margin-bottom: 2.5rem;
@@ -514,29 +517,23 @@ body {
 .w-full {
   width: 100%;
 }
-.w-4\/5 {
-  width: 80%;
-}
 .w-96 {
   width: 24rem;
 }
 .w-32 {
   width: 8rem;
 }
+.w-4\/5 {
+  width: 80%;
+}
+.max-w-screen-md {
+  max-width: 768px;
+}
 .max-w-screen-2xl {
   max-width: 1536px;
 }
 .max-w-lg {
   max-width: 32rem;
-}
-.max-w-screen-xl {
-  max-width: 1280px;
-}
-.max-w-screen-sm {
-  max-width: 640px;
-}
-.max-w-screen-md {
-  max-width: 768px;
 }
 .grow {
   -webkit-box-flex: 1;
@@ -598,6 +595,9 @@ body {
   margin-right: calc(0.75rem * var(--tw-space-x-reverse));
   margin-left: calc(0.75rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.rounded-full {
+  border-radius: 9999px;
+}
 .rounded-xl {
   border-radius: 0.75rem;
 }
@@ -607,12 +607,16 @@ body {
 .border-solid {
   border-style: solid;
 }
+.border-transparent {
+  border-color: transparent;
+}
 .border-blue-700 {
   --tw-border-opacity: 1;
   border-color: rgb(29 78 216 / var(--tw-border-opacity));
 }
-.border-transparent {
-  border-color: transparent;
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .bg-blue-700 {
   --tw-bg-opacity: 1;
@@ -627,6 +631,9 @@ body {
 }
 .fill-white {
   fill: #fff;
+}
+.p-2 {
+  padding: 0.5rem;
 }
 .p-4 {
   padding: 1rem;
@@ -674,6 +681,9 @@ body {
 .align-middle {
   vertical-align: middle;
 }
+.align-super {
+  vertical-align: super;
+}
 .font-sans {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
@@ -684,6 +694,18 @@ body {
   font-size: 1.875rem;
   line-height: 2.25rem;
 }
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -692,10 +714,6 @@ body {
   font-size: 0.875rem;
   line-height: 1.25rem;
 }
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
-}
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -703,14 +721,6 @@ body {
 .text-lg {
   font-size: 1.125rem;
   line-height: 1.75rem;
-}
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
-}
-.text-base {
-  font-size: 1rem;
-  line-height: 1.5rem;
 }
 .text-\[85\%\] {
   font-size: 85%;
@@ -743,11 +753,20 @@ body {
 .leading-tight {
   line-height: 1.25;
 }
+.leading-normal {
+  line-height: 1.5;
+}
+.leading-relaxed {
+  line-height: 1.625;
+}
 .tracking-tight {
   letter-spacing: -0.025em;
 }
 .tracking-normal {
   letter-spacing: 0em;
+}
+.tracking-wide {
+  letter-spacing: 0.025em;
 }
 .text-gray-900 {
   --tw-text-opacity: 1;
@@ -797,11 +816,11 @@ body {
   }
 }
 @media (min-width: 768px) {
-  .md\:w-4\/5 {
-    width: 80%;
-  }
   .md\:w-2\/3 {
     width: 66.666667%;
+  }
+  .md\:w-4\/5 {
+    width: 80%;
   }
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1691,6 +1710,14 @@ table tbody tr:nth-of-type(odd):hover {
   -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
        -o-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
           transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+.pagination-item a:hover {
+  -webkit-text-decoration-line: underline;
+          text-decoration-line: underline;
+}
+.pagination-item a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
   text-align: center;
   position: relative;
   padding-left: 1rem;
@@ -1704,10 +1731,6 @@ table tbody tr:nth-of-type(odd):hover {
   opacity: 1;
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.pagination-item a:hover {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
 }
 .pagination-item:first-of-type {
   font-weight: 600;

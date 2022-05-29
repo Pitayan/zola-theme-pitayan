@@ -1,0 +1,25 @@
+{% extends "section.html" %}
+{% import "macros/postItem.html" as postItem %}
+{% import "macros/pagination.html" as pagination %}
+
+{% block content %}
+{%- set section = get_section(path="posts/_index.md") %}
+<h2 class="xl:text-7xl lg:text-6xl md:text-5xl text-4xl font-bold text-center mb-24">
+  {{section.title}} <sup class="text-base bg-gray-200 rounded-full p-2 align-super">{{section.pages | length}}</sup>
+</h2>
+
+<hr />
+
+<p class="my-4 text-xl">Check out the <b class="font-bold">lastest posts</b></p>
+
+<div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+  {%- for post in paginator.pages %}
+  {{postItem::render(post=post)}}
+  {%- endfor %}
+</div>
+
+<div class="my-24 text-center">
+{{pagination::render(paginator=paginator)}}
+</div>
+ 
+{% endblock %}

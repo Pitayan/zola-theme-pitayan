@@ -5,7 +5,7 @@ description: We recently had a workshop to make engineers on the team to take pr
 extra:
   image: image.jpg
 taxonomies:
-  cateogires:
+  categories:
     - Javascript
   authors:
     - cheryl-d-zigler 

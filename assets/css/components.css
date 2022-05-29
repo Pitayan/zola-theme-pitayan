@@ -110,6 +110,9 @@
       @apply transition-all;
       @apply duration-150;
       @apply ease-in-out;
+      @apply hover:underline;
+      @apply decoration-1;
+      @apply underline-offset-2;
 
       @apply text-center;
       @apply relative;
@@ -118,10 +121,6 @@
       /* Dark Mode */
       @apply dark:hover:opacity-100;
       @apply dark:hover:text-white;
-
-      &:hover {
-        @apply underline;
-      }
     }
   }
 
