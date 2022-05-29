@@ -6,7 +6,6 @@ updated: 2021-02-20T14:40:00-06:00
 draft: false
 extra:
   author: Your name here
-  #subtitle:
 ---
 
 This sentence comes from the **/content/_index.md** file.

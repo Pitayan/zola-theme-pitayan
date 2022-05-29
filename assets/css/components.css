@@ -1,9 +1,10 @@
 .site-tag {
-  @apply rounded-sm;
-  @apply py-0.5 px-1;
-  @apply text-sm;
-  @apply text-gray-800;
+  @apply rounded-full;
+  @apply py-1 px-2;
+  @apply text-xs;
+  @apply font-medium;
   @apply bg-gray-200;
+  @apply cursor-pointer;
   @apply hover:bg-gray-300;
   @apply transition-colors;
   @apply duration-150;

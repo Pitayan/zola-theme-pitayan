@@ -1,0 +1,38 @@
+{% import "macros/image.html" as image %}
+
+{% macro render(post) %}
+{% set post_relative_path_array = post.relative_path | split(pat="/") %}
+{% set src = post_relative_path_array[0] ~ "/" ~ post_relative_path_array[1] ~ "/" ~ post.extra.image %}
+<article class="post-item">
+  <div class="block post-image">
+    <a href="/posts/{{post.slug}}">
+      {{image::render(
+      src=src,
+      alt=post.title,
+      class="w-full rounded-xl"
+      )}}
+    </a>
+  </div>
+  <div class="post-footer my-4">
+    <div class="post-categories my-2">
+    {% for category in post.taxonomies.categories %}
+    <a href="/{{category}}" class="site-tag mr-2">
+      <span>
+        {{category}}
+      </span>
+    </a>
+    {% endfor %}
+    </div>
+    <a href="/posts/{{post.slug}}">
+      <h3 class="post-title font-bold">{{post.title}}</h3>
+    </a>
+    <small class="text-xs">{{post.date | date(format="%b %d, %Y")}} — {{post.reading_time}} min read.</small>
+    <small class="text-xs">by 
+      {% for author in post.taxonomies.authors %}
+      <a class="cursor-pointer underline font-medium">{{author}}</a>&nbsp;
+      {% endfor %}
+    </small>
+    <p class="post-description my-3 text-sm">{{post.description}}</p>
+  </div>
+</article>
+{% endmacro %}

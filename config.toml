@@ -3,7 +3,7 @@ base_url = "http://localhost"
 # Change this to your own URL! Please note this variable **must** be uncommented.
 
 title = "Pitayan Blog"
-description="Welcome to Pitayan, come find inspiring software development stories."
+description = "Welcome to Pitayan, come find inspiring software development stories."
 
 # When set to "true", a feed is automatically generated.
 # generate_feed = true
@@ -52,9 +52,10 @@ external_links_no_referrer = true
 smart_punctuation = true
 
 taxonomies = [
-  {name = "categories", feed = true},
+  { name = "categories", feed = true },
+  { name = "authors", feed = false },
+  { name = "keywords", feed = false },
 ]
 
 [extra]
 # Put all your custom variables here
-

@@ -1,0 +1,16 @@
+{% macro render(src, alt, class="") %}
+{% set cover_image_300 = resize_image(path=src, width=300, height=150) %}
+{% set cover_image_600 = resize_image(path=src, width=600, height=300) %}
+{% set cover_image_900 = resize_image(path=src, width=900, height=450) %}
+{% set cover_image_1200 = resize_image(path=src, width=1200, height=600) %}
+
+<img src="{{ cover_image_900.url }}" class="{{class}}" alt="{{alt}}" loading="lazy" srcset="{{ cover_image_300.url | safe }} 300w,
+  {{ cover_image_600.url | safe }} 600w,
+  {{ cover_image_900.url | safe }} 900w,
+  {{ cover_image_1200.url | safe }} 1200w," sizes="(max-width: 500px) 90vw,
+  (max-width: 700px) 200px,
+  (max-width: 900px) 300px,
+  (max-width: 1000px) 200px,
+  (max-width: 1200px) 300px,
+  400px" />
+{% endmacro %}

@@ -1,7 +1,6 @@
-{# Extends #}
-{% extends "_default/base.html" %}
+{% extends "layout/default.html" %}
+{% import "macros/postItem.html" as postItem %}
 
-{# Content #}
 {% block content %}
 <div class="my-12">
   {% include "partials/sloganHome.html" %}
@@ -9,60 +8,18 @@
   <br />
   <br />
   <hr />
-  <h3 class="my-4">Read what we recently wrote</h3>
 
-  <div class="text-center lg:text-left lg:w-7/12 lg:pl-16 lg:pt-16">
-      <div class="mt-8 border-blue-700 dark:border-white mx-auto my-auto w-3/5 border-solid border-b-4 lg:hidden"></div>
-      <h2 class="h1 mt-4 lg:mt-0 mb-4 lg:mb-10 text-3xl lg:text-5xl 2xl:text-7xl">Latest <a href="/posts">posts</a></h2>
-      {%- set section = get_section(path="posts/_index.md") %}
-      {%- for post in section.pages | slice(end=3) %}
-  <article class="item is-loop is-image">
-	<div class="item-image global-image global-image-orientation global-radius">
-		
-		<a href="/creating-is-a-privilege-but-its-also-a-gift/" class="global-link" aria-label="Creating is a privilege but it’s also a gift"></a>
-		<img srcset="/content/images/size/w300/2022/03/photo-1640447051222-3023288a492b.jpeg 300w, 
-			 /content/images/size/w600/2022/03/photo-1640447051222-3023288a492b.jpeg 600w,
-			 /content/images/size/w1200/2022/03/photo-1640447051222-3023288a492b.jpeg 1200w" sizes="(max-width:480px) 300px, (max-width:768px) 600px, 1200px" src="/content/images/size/w1200/2022/03/photo-1640447051222-3023288a492b.jpeg" loading="lazy" alt="">
-		<div class="item-authors global-authors">
-			<div>
-				<div class="item-author global-item-author is-image global-image">
-					<a href="/author/nichole/" class="global-link" title="Nichole Becker"></a>
-					<img src="/content/images/size/w300/2022/03/joshua-oyebanji-kMC1v6rBHMI-unsplash-2.jpg" loading="lazy" alt="Nichole Becker">				</div>
-				<div class="item-author global-item-author is-image global-image">
-					<a href="/author/daryl/" class="global-link" title="Daryl Wehner"></a>
-					<img src="/content/images/size/w300/2022/03/kazi-mizan-ItjRqGiei5g-unsplash.jpg" loading="lazy" alt="Daryl Wehner">				</div>
-			</div>
-		</div>
-	</div>
-	<div class="item-content">
-		<div class="item-tags global-tags">
-			<a href="/tag/lifestyle/">Lifestyle</a><span><a href="/tag/people/">People</a><a href="/tag/review/">Review</a></span>
-		</div>
-		<h2 class="item-title"><a href="/creating-is-a-privilege-but-its-also-a-gift/">Creating is a privilege but it’s also a gift</a></h2>
-		<p class="item-excerpt">
-			Nullam vel lectus vel velit pellentesque dignissim nec id magna. Cras molestie ornare quam at semper. Proin a ipsum ex. Curabitur eu venenatis justo. Nullam felis augue, imperdiet at sodales a, sollicitudin nec risus.
-		</p>
-	</div>
-</article>
+  <p class="my-4 text-3xl">Read what we <br /><b class="font-black">recently published</b></p>
 
-
-        <div>
-          <h2 class="not-italic tracking-tight text-2xl lg:text-3xl 2xl:text-4xl"><a href="{{ post.permalink | safe }}">{{ post.title }}</a></h2>
-          <p class="font-sans font-bold mt-1 mb-0 leading-5 text-xl lg:text-2xl 2xl:text-3xl">{% if post.extra.subtitle %}{{ post.extra.subtitle }}{% endif %}</p>
-          <p class="font-sans text-sm tracking-normal mt-1 mb-0 dateInfo">
-            <strong>{{ post.date  | date(format="%B %e, %Y", timezone="America/Chicago") }}</strong>{% if post.updated %}<br />
-            Last modified {{ post.updated | date(format="%B %e, %Y", timezone="America/Chicago") }}{% endif %}
-          </p>
-          <p class="font-sans text-base mt-1 mb-4 lg:mb-10">
-            {{ post.description}}
-          </p>
-        {%- endfor %}
-        <p class="font-sans mt-8"><a href="/posts/"><strong>All {{ section.pages | length }} posts</strong></a> <span class="text-sm"><em>(listed five per page)</em></span></p>
-      </div>
-    </div>
+  <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {%- set section = get_section(path="posts/_index.md") %}
+    {%- for post in section.pages | slice(end=12) %}
+      {{postItem::render(post=post)}}
+    {%- endfor %}
   </div>
 
-
-
+  <div class="text-center my-24">
+    <a class="block" href="/posts"><button class="fill-button">Load More</button></a>
+  </div>
 </div>
 {% endblock content %}
