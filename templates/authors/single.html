@@ -1,12 +1,11 @@
-{% extends "section.html" %}
+{% extends "layout/default.html" %}
 {% import "macros/postItem.html" as postItem %}
 {% import "macros/pagination.html" as pagination %}
+{% import "macros/authorBlock.html" as authorBlock %}
 
 {% block content %}
-  {%- set section = get_section(path="posts/_index.md") %}
-  <h2 class="xl:text-7xl lg:text-6xl md:text-5xl text-4xl font-bold text-center mb-24 capitalize">
-    {{section.title}} <sup class="text-base bg-gray-200 rounded-full p-2 align-super">{{section.pages | length}}</sup>
-  </h2>
+  {% set author = get_page(path="authors/"~term.slug~"/index.md") %}
+  {{authorBlock::render(author=author, posts=term.pages, class="mb-24")}}
 
   <hr />
 
@@ -19,6 +18,6 @@
   </div>
 
   <div class="my-24 text-center">
-  {{pagination::render(paginator=paginator)}}
+    {{pagination::render(paginator=paginator)}}
   </div>
 {% endblock %}

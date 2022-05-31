@@ -1,3 +1,3 @@
 ---
-transparent: true
+transparent: false
 ---

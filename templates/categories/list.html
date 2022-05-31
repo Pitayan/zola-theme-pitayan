@@ -1,0 +1,22 @@
+{% extends "layout/default.html" %}
+
+{% block content %}
+  <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-24 capitalize">
+    {{taxonomy.name}} <sup class="text-base bg-gray-200 rounded-full p-2 align-super">{{terms | length }}</sup>
+  </h2>
+
+  <hr />
+
+  <p class="my-4 text-xl">Explore posts via <b class="font-bold">{{taxonomy.name}}</b></p>
+
+  <div class="flex flex-wrap items-center mb-24">
+    {% for category in terms %}
+      <a href="{{category.permalink}}" class="mr-4 mb-4">
+        <button class="ghost-button">
+          {{category.name}}
+          <span class="bg-gray-50 rounded-full py-px px-2">{{category.pages | length}}</span>
+        </button>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}

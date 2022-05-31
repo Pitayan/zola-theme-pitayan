@@ -1,0 +1,11 @@
+{% macro render(categories, class) %}
+<div class="post-categories {{class}}">
+{% for category in categories %}
+<a href="{{get_taxonomy_url(kind="categories", name=category)}}" class="site-tag mr-2">
+  <span>
+    {{category}}
+  </span>
+</a>
+{% endfor %}
+</div>
+{% endmacro %}

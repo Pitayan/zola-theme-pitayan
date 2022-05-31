@@ -1,11 +1,11 @@
 {% import "macros/image.html" as image %}
+{% import "macros/postCategories.html" as postCategories %}
 
-{% macro render(post) %}
-{% set post_relative_path_array = post.relative_path | split(pat="/") %}
-{% set src = post_relative_path_array[0] ~ "/" ~ post_relative_path_array[1] ~ "/" ~ post.extra.image %}
+{% macro render(post, display_categories=true, display_meta=true, display_description=true) %}
+{% set src = post.path ~ post.extra.image %}
 <article class="post-item">
-  <div class="block post-image">
-    <a href="/posts/{{post.slug}}">
+  <div class="post-image">
+    <a href="{{get_url(path="@/"~post.relative_path)}}">
       {{image::render(
       src=src,
       alt=post.title,
@@ -14,25 +14,29 @@
     </a>
   </div>
   <div class="post-footer my-4">
-    <div class="post-categories my-2">
-    {% for category in post.taxonomies.categories %}
-    <a href="/{{category}}" class="site-tag mr-2">
-      <span>
-        {{category}}
-      </span>
-    </a>
-    {% endfor %}
-    </div>
-    <a href="/posts/{{post.slug}}">
+    {% if display_categories and post.taxonomies.categories %}
+      {{postCategories::render(
+        categories=post.taxonomies.categories,
+        class="my-2"
+      )}}
+    {% endif %}
+    <a class="site-link" href="/posts/{{post.slug}}">
       <h3 class="post-title font-bold">{{post.title}}</h3>
     </a>
-    <small class="text-xs">{{post.date | date(format="%b %d, %Y")}} — {{post.reading_time}} min read.</small>
-    <small class="text-xs">by 
-      {% for author in post.taxonomies.authors %}
-      <a class="cursor-pointer underline font-medium">{{author}}</a>&nbsp;
-      {% endfor %}
-    </small>
-    <p class="post-description my-3 text-sm">{{post.description}}</p>
+    {% if display_meta %}
+      <small class="text-xs">{{post.date | date(format="%b %d, %Y")}} — {{post.reading_time}} min read.</small>
+      <small class="text-xs">by 
+        {%- set length = post.taxonomies.authors | length %}
+        {% for author in post.taxonomies.authors %}
+        <a class="cursor-pointer underline font-medium" href="{{get_taxonomy_url(kind="authors", name=author)}}">
+          {{author}}
+        </a>{% if loop.index != length %},{% endif %}
+        {% endfor %}
+      </small>
+    {% endif %}
+    {% if display_description %}
+      <p class="post-description my-3 text-sm">{{post.description}}</p>
+    {% endif %}
   </div>
 </article>
 {% endmacro %}

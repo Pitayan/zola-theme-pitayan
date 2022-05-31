@@ -1,10 +1,111 @@
 {% extends "layout/default.html" %}
+{% import "macros/postCategories.html" as postCategories %}
+{% import "macros/postMeta.html" as postMeta %}
+{% import "macros/postPager.html" as postPager %}
+{% import "macros/image.html" as image %}
+{% import "macros/authorPanel.html" as authorPanel %}
+{% import "macros/postItem.html" as postItem %}
+
+{% block title %}{{page.title}} | {{config.title}}{% endblock %}
 
 {% block content %}
-{% include "partials/billboard.html" %}
-<div class="max-w-screen-md mx-auto">
+<div class="relative max-w-screen-lg mx-auto mt-4 mb-16 lg:px-8">
+  <div class="w-full">
+    {% if page.taxonomies.categories %}
+      {{postCategories::render(
+        categories=page.taxonomies.categories,
+        class="mb-6"
+      )}}
+    {% endif %}
+
+    <h1 class="text-4xl lg:text-6xl 2xl:text-7xl font-bold lg:tracking-wide mx-auto">
+      {{ page.title }}
+    </h1>
+
+    {% if page.description %}
+      <p class="text-xl lg:text-2xl 2xl:text-3xl lg:tracking-wide font-medium">
+        {{ page.description }}
+      </p>
+    {% endif %}
+
+    {% if page.taxonomies.authors %}
+      {{postMeta::render(
+        authors=page.taxonomies.authors,
+        date=page.date,
+        reading_time=page.reading_time,
+        class="my-12"
+      )}}
+    {% endif %}
+
+    {% if page.extra.image %}
+      {% set src = page.path ~ page.extra.image %}
+      {{image::render(
+      src=src,
+      alt=page.title,
+      class="w-full rounded-xl"
+      )}}
+    {% endif %}
+  </div>
+</div>
+
+<div class="max-w-screen-md mx-auto mb-4">
   <article class="article markdown">
     {{ page.content | safe }}
   </article>
 </div>
+
+<div class="mark-w-sm md:mark-w-md mx-auto">
+  <hr />
+  <p class="mt-4 mb-8 text-xl">It's <b class="font-extrabold">written by</b></p>
+
+  <div class="mark-w-sm md:mark-w-md mx-auto">
+    {% if page.taxonomies.authors %}
+      {% for author in page.taxonomies.authors %}
+        {% set author_slug = get_taxonomy_url(kind="authors", name=author) | trim_end_matches(pat="/") | split(pat="/") | last %}
+        {% set author_profile = get_page(path="authors/"~author_slug~"/index.md") %}
+        {{authorPanel::render(
+        author=author_profile, 
+        display_name=false,
+        )}}
+      {% endfor %}
+    {% endif %}
+  </div>
+</div>
+
+<hr />
+
+{{postPager::render(
+  post=page,
+  class="my-8"
+)}}
+
+<hr />
+
+<p class="my-4 text-xl">You might <b class="font-extrabold">also like</b></p>
+{% set section = get_section(path="posts/_index.md") %}
+{% set all_posts = section.pages %}
+
+<div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-36">
+  {% if page.taxonomies.categories %}
+    {% set_global related_posts = all_posts | slice(end=4) | sort(attribute="date") | reverse %}
+    {% for post in all_posts %}
+      {% if post.title != page.title %}
+        {% for category in page.taxonomies.categories %}
+          {% if post.taxonomies.categories is containing(category) %}
+            {% set_global related_posts = [post] | concat(with=related_posts) | slice(end=4) %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endfor %}
+    {% for post in related_posts %}
+      {{postItem::render(
+        post=post,
+        display_categories=false,
+        display_meta=false,
+        display_description=false
+      )}}
+    {% endfor %}
+  {% endif %}
+</div>
+
 {% endblock content %}

@@ -1,0 +1,44 @@
+{% import "macros/image.html" as image %}
+
+{% macro render(post, class="") %}
+<div class="grid grid-cols-1 lg:grid-cols-2 auto-cols-max gap-x-8 {{ class }}">
+  {% if post.later %}
+    <div class="flex items-center lg:my-4">
+      <a href="{{post.later.permalink}}">
+        {% set src = post.later.path ~ post.later.extra.image %}
+        {{image::render(
+        src=src,
+        alt=page.later.title,
+        class="rounded-xl w-auto h-auto"
+        )}}
+      </a>
+      <div class="p-4 my-4 rounded md:w-96 lg:w-3/5">
+        <small class="font-medium">Newer Post</small>
+        <a href="{{post.later.permalink}}" class="site-link">
+          <h3 class="font-extrabold">{{post.later.title}}</h3>
+        </a>
+      </div>
+    </div>
+  {% else %}
+  <div></div>
+  {% endif %}
+  {% if post.earlier %}
+    <div class="flex items-center text-right my-4 justify-self-end">
+      <div class="p-4 my-4 rounded md:w-96 lg:w-3/5">
+        <small class="font-medium">Older Post</small>
+        <a href="{{post.earlier.permalink}}" class="site-link">
+          <h3 class="font-extrabold">{{post.earlier.title}}</h3>
+        </a>
+      </div>
+      <a href="{{post.earlier.permalink}}">
+        {% set src = post.earlier.path ~ post.earlier.extra.image %}
+        {{image::render(
+        src=src,
+        alt=page.earlier.title,
+        class="rounded-xl w-auto h-auto"
+        )}}
+      </a>
+    </div>
+  {% endif %}
+</div>
+{% endmacro %}

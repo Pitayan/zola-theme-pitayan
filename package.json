@@ -8,7 +8,7 @@
     "start": "TAILWIND_MODE=watch NODE_ENV=development npm-run-all clean initcss --parallel dev:*",
     "dev:css": "postcss assets/css/style.css -o ./static/css/style.css -w",
     "dev:serve": "zola serve",
-    "build": "NODE_ENV=production npm-run-all clean prod:postcss prod:build",
+    "build": "NODE_ENV=production npm-run-all clean prod:css prod:build",
     "prod:css": "postcss assets/css/style.css -o ./static/css/style.css",
     "prod:build": "zola build"
   },

@@ -4,6 +4,9 @@ description: "Your UNIQUE description here."
 date: 2018-09-14T15:00:00-05:00
 updated: 2020-04-22T19:30:00-05:00
 draft: false
+taxomonies:
+  categories:
+    - About
 extra:
   author: Your name here
   #subtitle:

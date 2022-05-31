@@ -1,0 +1,28 @@
+{% import "macros/authorImage.html" as authorImage %}
+{% import "macros/authorSocial.html" as authorSocial %}
+
+{% macro render(author, posts, class="") %}
+<div class="author-block-item text-center {{class}}">
+  <div class="author-image avatar h-36 w-36">
+    {{authorImage::render(
+    src="authors/"~author.slug~"/"~author.extra.image,
+    alt=author.title,
+    class="!rounded-full ring-8 ring-gray-100"
+    )}}
+  </div>
+  <div class="author-footer my-8 text-center max-w-2xl mx-auto">
+    <h2 class="author-name xl:text-6xl lg:text-5xl md:text-4xl text-3xl">
+      {{author.title}} <sup class="text-base bg-gray-200 rounded-full p-2 align-super">{{ posts | length }}</sup>
+    </h2>
+    {{authorSocial::render(
+      social=author.extra.social,
+      class="my-4 flex flex-wrap items-center justify-center",
+      display_name=true
+    )}}
+
+    <div class="font-semibold text-2xl">
+      {{author.content | safe}}
+    </div>
+  </div>
+</div>
+{% endmacro %}

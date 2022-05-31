@@ -1,0 +1,26 @@
+{% import "macros/authorImage.html" as authorImage %}
+
+{% macro render(author, posts) %}
+<div class="author-card-item">
+  <div class="author-image">
+    <a href="{{get_url(path="@/"~author.relative_path)}}">
+      {{authorImage::render(
+      src="authors/"~author.slug~"/"~author.extra.image,
+      alt=author.title,
+      class="w-full rounded-3xl transition-transform hover:-translate-y-1 duration-150"
+      )}}
+    </a>
+  </div>
+  <div class="author-footer my-4">
+    <a class="site-link" href="{{get_url(path="@/"~author.relative_path)}}">
+      <h2 class="post-title font-extrabold mb-2">{{author.title}}</h2>
+    </a>
+    <small class="block mb-2 font-medium">
+      {{posts | length}} post{{ posts | length | pluralize(singular="", plural="s")}}
+    </small>
+    <div class="text-[85%]">
+      {{author.content | truncate(length=80) | safe}}
+    </div>
+  </div>
+</div>
+{% endmacro %}

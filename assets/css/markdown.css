@@ -12,32 +12,12 @@
     @apply mt-6;
     @apply mb-6;
     @apply relative;
-
-    /* Display heading anchor */
-    &:hover {
-      a.heading-anchor {
-        @apply md:opacity-100;
-      }
-    }
   }
 
   a {
-    @apply text-blue-600;
-
-    &.heading-anchor {
-      @apply pr-1;
-      @apply opacity-0;
-      @apply transition duration-75;
-      @apply top-auto;
-
-      span {
-        @apply text-blue-600;
-      }
-    }
-
-    &:hover {
-      @apply underline;
-    }
+    @apply underline;
+    @apply underline-offset-2;
+    @apply font-medium;
 
     &:active,
     &:focus {
@@ -135,10 +115,6 @@
 
     a {
       @apply text-blue-400;
-
-      &.heading-anchor span {
-        @apply !text-blue-400;
-      }
     }
   }
 }
