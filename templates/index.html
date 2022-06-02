@@ -3,10 +3,12 @@
 
 {% block content %}
 <div class="my-12">
-  {% include "partials/sloganHome.html" %}
+  <p class="xl:text-7xl lg:text-6xl md:text-5xl text-4xl">
+    {{config.extra.site_slogan | safe}}
+  </p>
+
   {% include "partials/subscriptionHome.html" %}
-  <br />
-  <br />
+
   <hr />
 
   <p class="my-4 text-3xl">Read what we <br /><b class="font-extrabold">recently published</b></p>
@@ -19,7 +21,7 @@
   </div>
 
   <div class="text-center my-24">
-    <a class="block" href="/posts"><button class="fill-button">Load More</button></a>
+    <a class="block" href="/posts"><button class="fill-button lg-button">Load More</button></a>
   </div>
 </div>
 {% endblock content %}

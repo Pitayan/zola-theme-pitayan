@@ -3,7 +3,7 @@ base_url = "http://localhost"
 # Change this to your own URL! Please note this variable **must** be uncommented.
 
 title = "Pitayan Blog"
-description = "Welcome to Pitayan, come find inspiring software development stories."
+description = "Inspiring stories, thoughts and ideas of software development"
 
 taxonomies = [
   { name = "categories", paginate_by = 12 },
@@ -30,7 +30,17 @@ compile_sass = false
 # I'm keeping off for now -- buggy -- 2021-02-05 (@keats says it'll be fixed 0.14.0)
 
 # Whether to build a search index to be used later on by a JavaScript library
-build_search_index = false
+build_search_index = true
+
+[search]
+# Whether to include the title of the page/section in the index
+include_title = true
+# Whether to include the description of the page/section in the index
+include_description = false
+# Whether to include the path of the page/section in the index
+include_path = false
+# Whether to include the rendered content of the page/section in the index
+include_content = true
 
 [markdown]
 # Whether to do syntax highlighting
@@ -58,3 +68,53 @@ smart_punctuation = true
 
 [extra]
 # Put all your custom variables here
+site_slogan = "<b>Hi, there! Welcome to Pitayan.</b> Come find our inspiring stories, thoughts and ideas."
+site_cover = "img/cover_image.png"
+site_logo = "img/logo.svg"
+
+social_links.behance = "https://behance.net"
+social_links.buymeacoffee = "https://www.buymeacoffee.com"
+social_links.devto = "https://dev.to"
+social_links.digitalocean = "https://www.digitalocean.com/blog/author"
+social_links.dribbble = "https://www.dribbble.com"
+social_links.facebook = "https://www.facebook.com"
+social_links.github = "https://github.com"
+social_links.instagram = "https://www.instagram.com"
+social_links.kickstarter = "https://www.kickstater.com/projects"
+social_links.linkedin = "https://www.linkedin.com/in"
+social_links.medium = "https://www.medium.com"
+social_links.patreon = "https://www.patreon.com/"
+social_links.stackoverflow = "https://stackoverflow.com/users"
+social_links.tripadvisor = "https://www.tripadvisor.com"
+social_links.twitter = "https://www.twitter.com"
+social_links.unsplash = "https://unsplash.com"
+social_links.vimeo = "https://vimeo.com/channels"
+social_links.youtube = "https://www.youtube.com/channel"
+
+copyright_statement = "Pitayan. All rights reserved. Built with <a class=\"underline\" href=\"https://www.getzola.org\">Zola</a>"
+
+cookie_prompt = """
+We use 3rd party tools to understand visitors and create a
+personalized experience. By clicking "Agree" button below,
+you agree to allowing us to storage cookies on your browser. 
+See <a class="underline" class="/terms-and-conditions">terms</a> and <a class="underline" href="/privacy-policy">privacy</a>.
+"""
+
+links.site = [
+  { name = "about" , url = "/about" },
+  { name = "privacy", url = "/privacy-policy" },
+  { name = "terms", url = "/terms-and-conditions" },
+  { name = "write for us", url = "/write-for-us" },
+]
+
+links.connect = [
+  { name = "twitter" , url = "https://twitter.com/pitayanblog" },
+  { name = "github", url = "https://github.com/Pitayan" },
+  { name = "email", url = "mailto:pitayanblog@gmail.com" },
+]
+
+sns.twitter = "https://twitter.com/pitayanblog"
+sns.github = "https://github.com/Pitayan"
+sns.email = "mailto:pitayanblog@gmail.com"
+
+mailchimp_endpoint = "https://pitayanblog.us14.list-manage.com/subscribe/post?u=234bf6777b76872feb7d92a68&amp;id=27fad95f3b"

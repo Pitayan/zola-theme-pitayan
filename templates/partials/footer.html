@@ -1,11 +1,50 @@
 <footer class="my-12">
+  <div class="drawer drawer-bottom">
+    <div class="drawer-container bg-gray-200 opacity-100 dark:bg-gray-800 h-full px-8 z-50">
+      <div class="text-base font-medium max-w-screen-lg mx-auto py-8 text-right">
+        <p class="mb-4 text-left">
+          {{config.extra.cookie_prompt | safe}}
+        </p>
+        <button class="fill-button sm-button ml-auto text-base">
+          Agree
+        </button>
+      </div>
+    </div>
+    <script type="text/javascript">
+      (function() {
+        var drawer = document.currentScript.parentElement
+        var button = drawer.querySelector('button')
+        var COOKIE_PROMPT_AGREEMENT = 'site-cookie-consent-agreement'
+
+        if (!window.localStorage.getItem(COOKIE_PROMPT_AGREEMENT)) {
+          drawer.classList.add('open', 'slide-in-up')
+        }
+
+        button.onclick = function() {
+          if (window.localStorage.getItem(COOKIE_PROMPT_AGREEMENT)) {
+            return
+          }
+
+          window.localStorage.setItem(COOKIE_PROMPT_AGREEMENT, 'true')
+
+          setTimeout(() => {
+            drawer.classList.remove('slide-in-up')
+            drawer.classList.add('slide-out-down')
+            drawer.addEventListener('animationend', function temp() {
+              drawer.classList.remove('open')
+            })
+          }, 200)
+        }
+      })()
+    </script>
+  </div>
   <div class="flex flex-wrap justify-between">
     <div class="w-96 mb-8">
-      <b class="text-3xl text-gray-900 font-bold block font-serif font-black mb-8">
-        Pitayan
+      <b class="text-3xl md:text-4xl hidden sm:block font-serif font-black mb-4">
+        {{config.title}}
       </b>
       <small class="text-xl font-medium">
-        Inspiring software development stories
+        {{config.description}}
       </small>
     </div>
     <div class="flex flex-wrap justify-between md:space-x-16">
@@ -32,56 +71,37 @@
           </a>
         </li>
       </ul>
-      <div class="w-32 text-base space-y-2 mb-4">
+      <ul class="w-32 text-base space-y-2 mt-0 mb-4 list-none">
         <h3 class="font-bold mb-3">Site</h3>
-        <div>
-          <a class="site-link" href="/">
-            home
-          </a>
-        </div>
-        <div>
-          <a class="site-link" href="/posts">
-            posts
-          </a>
-        </div>
-        <div>
-          <a class="site-link" href="/categories">
-            categories
-          </a>
-        </div>
-        <div>
-          <a class="site-link" href="/authors">
-            authors
-          </a>
-        </div>
-      </div>
-      <div class="w-32 text-base space-y-2 mb-4">
+        {% for link in config.extra.links.site %}
+          <li>
+            <a class="site-link" href="{{link.url}}">
+              {{link.name}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="w-32 text-base space-y-2 mt-0 mb-4 list-none">
         <h3 class="font-bold mb-3">Connect</h3>
-        <div>
-          <a class="site-link" href="/">
-            home
-          </a>
-        </div>
-        <div>
-          <a class="site-link" href="/posts">
-            posts
-          </a>
-        </div>
-        <div>
-          <a class="site-link" href="/categories">
-            categories
-          </a>
-        </div>
-        <div>
-          <a class="site-link" href="/authors">
-            authors
-          </a>
-        </div>
-      </div>
+        {% for link in config.extra.links.connect %}
+          <li>
+            <a class="site-link" href="{{link.url}}">
+              {{link.name}}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
   <div class="text-sm font-normal mt-8 mb-8">
-    &copy; 2020 - {{ now() | date(format="%Y") }} Pitayan. All rights reserved.
+    &copy; <span></span> {{config.extra.copyright_statement | safe}}
+    <script>
+      (function() {
+        var div = document.currentScript.parentElement
+        var span = div.querySelector('span')
+        span.innerText = new Date().getFullYear()
+      })()
+    </script>
   </div>
 </footer>
 

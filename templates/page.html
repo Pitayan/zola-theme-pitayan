@@ -5,11 +5,12 @@
 {% import "macros/image.html" as image %}
 {% import "macros/authorPanel.html" as authorPanel %}
 {% import "macros/postItem.html" as postItem %}
+{% import "partials/socialSharing.html" as socialSharing %}
 
 {% block title %}{{page.title}} | {{config.title}}{% endblock %}
 
 {% block content %}
-<div class="relative max-w-screen-lg mx-auto mt-4 mb-16 lg:px-8">
+<div class="relative max-w-screen-lg mx-auto mt-4 mb-16">
   <div class="w-full">
     {% if page.taxonomies.categories %}
       {{postCategories::render(
@@ -38,7 +39,8 @@
     {% endif %}
 
     {% if page.extra.image %}
-      {% set src = page.path ~ page.extra.image %}
+      {% set page_path = page.relative_path | split(pat="/") %}
+      {% set src = page_path[0] ~ "/" ~ page_path[1] ~ "/" ~ page.extra.image %}
       {{image::render(
       src=src,
       alt=page.title,
@@ -48,17 +50,60 @@
   </div>
 </div>
 
-<div class="max-w-screen-md mx-auto mb-4">
-  <article class="article markdown">
+<div class="max-w-screen-lg mx-auto mb-4 relative lg:grid grid-flow-col items-start">
+  <article class="article markdown lg:pr-8 lg:mr-auto mx-auto col-span-2">
     {{ page.content | safe }}
   </article>
+  <div class="sticky top-0 flex-shrink-0 w-auto justify-self-end mr-auto col-span-1 mb-12 overflow-y-auto lg:h-[calc(100vh-1rem)]">
+    <hr class="my-4" />
+    <p class="my-4 text-xl">On <b class="font-extrabold">this page</b></p>
+    <ul class="text-base lg:text-sm font-semibold list-none">
+      {% for h1 in page.toc %}
+        <li class="lg:!mt-1">
+        {% if h1.children %}
+          <details>
+            <summary>
+              <a class="site-link lg:!text-sm !font-semibold" href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+            </summary>
+            {% for h2 in h1.children %}
+              <li class="lg:!mt-1 ml-4">
+                <a class="site-link lg:!text-sm !font-semibold" href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+              </li>
+            {% endfor %}
+          </details>
+        {% else %}
+          <a class="site-link lg:!text-sm !font-semibold" href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+        {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+    <hr class="my-4" />
+    <p class="my-4 text-xl">Filed <b class="font-extrabold">under</b></p>
+    {% if page.taxonomies.categories %}
+      {{postCategories::render(
+        categories=page.taxonomies.categories,
+        class="mb-6 flex-wrap"
+      )}}
+    {% endif %}
+    <hr class="my-4" />
+    <p class="my-4 text-xl">Share <b class="font-extrabold">this post</b></p>
+    {% if page.taxonomies.categories %}
+      {{socialSharing::render(
+        title=page.title,
+        url=page.permalink,
+        description=page.description,
+        hashtags=page.taxonomies.categories,
+        wrapper_class="flex items-center space-x-4",
+        item_class="ghost-button xs-button"
+      )}}
+    {% endif %}
+  </div>
 </div>
 
-<div class="mark-w-sm md:mark-w-md mx-auto">
+<div class="max-w-screen-lg mx-auto">
   <hr />
   <p class="mt-4 mb-8 text-xl">It's <b class="font-extrabold">written by</b></p>
 
-  <div class="mark-w-sm md:mark-w-md mx-auto">
     {% if page.taxonomies.authors %}
       {% for author in page.taxonomies.authors %}
         {% set author_slug = get_taxonomy_url(kind="authors", name=author) | trim_end_matches(pat="/") | split(pat="/") | last %}
@@ -69,7 +114,6 @@
         )}}
       {% endfor %}
     {% endif %}
-  </div>
 </div>
 
 <hr />
@@ -91,7 +135,7 @@
     {% for post in all_posts %}
       {% if post.title != page.title %}
         {% for category in page.taxonomies.categories %}
-          {% if post.taxonomies.categories is containing(category) %}
+          {% if category in post.taxonomies.categories %}
             {% set_global related_posts = [post] | concat(with=related_posts) | slice(end=4) %}
           {% endif %}
         {% endfor %}

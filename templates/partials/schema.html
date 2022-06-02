@@ -1,0 +1,124 @@
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type": "Organization",
+      "@id": "{{config.base_url | safe}}/#organization",
+      "name": "{{title}}",
+      "url": "{{config.base_url | safe}}",
+      "sameAs": [{% set sns_length = config.extra.sns | length %}{% for _,value in config.extra.sns %}"{{value | safe}}"{% if loop.index < sns_length %},{% endif %}{% endfor %}],
+      "logo":{
+        "@type":"ImageObject",
+        "@id":"{{config.base_url | safe}}/#logo",
+        "inLanguage":"en-US",
+        "url":"{{config.base_url | safe}}/{{config.extra.site_logo}}",
+        "width":"512",
+        "height":"512",
+        "caption":"{{title}}"
+      },
+      "image":{
+        "@id":"{{config.base_url | safe}}/#logo"
+      }
+    },
+    {
+      "@type":"WebSite",
+      "@id":"{{config.base_url | safe}}/#website",
+      "url":"{{config.base_url | safe}}",
+      "name":"{{title}}",
+      "description":"{{description | safe}}",
+      "publisher":{
+        "@id":"{{config.base_url | safe}}/#organization"
+      },
+      "inLanguage":"en-US"
+    },
+    {
+      "@type":"BreadcrumbList",
+      "description":"Breadcrumbs list",
+      "name":"Breadcrumbs",
+      "@id":"{{config.base_url | safe}}/#breadcrumb",
+      "itemListElement":[
+        {
+          "@type":"ListItem",
+          "position":"1",
+          "item":{
+            "@type":"WebPage",
+            "@id":"{{config.base_url | safe}}/#webpage",
+            "url":"{{config.base_url | safe}}",
+            "name":"Homepage"
+          }
+        }{% if section.title or page.title %},
+        {
+          "@type":"ListItem",
+          "position":"2",
+          "item":{
+            "@type":"WebPage",
+            "@id":"{{config.base_url | safe}}/#webpage",
+            "url":"{{url | safe}}",
+            "name":"{{title}}"
+          }
+        }{% endif %}
+      ]
+    },
+    {
+      "@type":"WebPage",
+      "@id":"{{url | safe}}/#webpage",
+      "url":"{{url | safe}}",
+      "name":"{{title}}",
+      "isPartOf":{
+        "@id":"{{config.base_url | safe}}/#website"
+      },
+      "about":{
+        "@id":"{{config.base_url | safe}}/#organization"
+      },
+      "description":"{{description | safe}}",
+      {% if page.date %}"datePublished":"{{page.date | date(format="%b %d, %Y")}}",
+      {% if page.update %}"dateModified":"{{page.update | date(format="%b %d, %Y")}}"{% else %}"dateModified":"{{page.date | date(format="%b %d, %Y")}}",{% endif %}{% endif %}
+      "breadcrumb":{
+        "@id":"{{config.base_url | safe}}/#breadcrumb"
+      },
+      "inLanguage":"en-US"
+    },
+    {
+      "@type":"ImageObject",
+      "@id":"{{url | safe}}/#primaryimage",
+      "description":"Cover Image",
+      "url":"{{cover_image_url | safe}}",
+      "inLanguage":"en-US"
+    }{% if page %}, {% if page.taxonomies.authors %} {% set authors_length = page.taxonomies.authors | length %} [{% for author in page.taxonomies.authors %} {% set author_slug = get_taxonomy_url(kind="authors", name=author) | trim_end_matches(pat="/") | split(pat="/") | last %} {% set author_profile = get_page(path="authors/"~author_slug~"/index.md") %}
+      {
+        "@type":"Person",
+        "@id":"{{config.base_url | safe}}/#/schema/{{author_slug}}",
+        "name":"{{author_profile.title}}",
+        "image":{
+          "@type":"ImageObject",
+          "@id":"{{config.base_url | safe}}/#personlogo",
+          "inLanguage":"en-US",
+          "caption":"{{author_profile.title}}"
+        },
+        "description":"{{author_profile.content | safe}}", {% set sns_length = author_profile.extra.social | length %}
+        "sameAs":[{% for key,value in author_profile.extra.social %}"{% if config.extra.social_links[key] %}{{config.extra.social_links[key] | safe}}/{% endif %}{{value | safe}}"{% if loop.index < sns_length %},{% endif %}{% endfor %}]
+      }{% if loop.index < authors_length %},{% endif %}{% endfor %}
+    ]{% endif %}{% if page.title and page.permalink %},
+    {
+      "@type":"Article",
+      "url":"{{url | safe}}",
+      "headline":"{{title}}",
+      "description":"{{description | safe}}",
+      "mainEntityOfPage":"True",
+      "publisher":{
+        "@id":"{{config.base_url | safe}}/#organization"
+      },
+      "image":{
+        "@id":"{{url | safe}}/#primaryimage"
+      },
+      {% if page.date %}"dateCreated":"{{page.date | date(format="%b %d, %Y")}}",
+      {% if page.date %}"datePublished":"{{page.date | date(format="%b %d, %Y")}}",
+      {% if page.update %}"dateModified":"{{page.update | date(format="%b %d, %Y")}}"{% else %}"dateModified":"{{page.date | date(format="%b %d, %Y")}}"{% endif %}{% endif %}{% if page.taxonomies.authors %},{% set author = page.taxonomies.authors[0] %}{% set author_slug = get_taxonomy_url(kind="authors", name=author) | trim_end_matches(pat="/") | split(pat="/") | last %}{% set author_profile = get_page(path="authors/"~author_slug~"/index.md") %}
+      "author":{
+        "@id":"{{config.base_url | safe}}/#/schema/{{author_slug}}"
+      }{% endif %}
+    }{% endif %}{% endif %}{% endif %}
+  ]
+}
+</script>

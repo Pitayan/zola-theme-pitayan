@@ -1,0 +1,58 @@
+{% macro render(title="", url="", description="", hashtags="", wrapper_class="", item_class="") %}
+  {% set title = title | urlencode %}
+  {% set url = url | urlencode %}
+  {% set description = description | urlencode %}
+  {% set hashtags = hashtags | join(sep=",") | urlencode %}
+  <div class="{{wrapper_class}}">
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={{"https://twitter.com/share?title=" ~ title ~ "&url=" ~ url ~ "&hashtags=" ~ hashtags}}
+      class="link-button ghost-button xs-button {{item_class}}"
+    >
+      {% include "partials/icons/twitter.html" %}
+    </a>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={{"https://www.facebook.com/sharer/sharer.php?title=" ~ title ~ "&u=" ~ url ~ "&description=" ~ description ~ "&hashtag=" ~ hashtags}}
+      class="link-button ghost-button xs-button {{item_class}}"
+    >
+      {% include "partials/icons/facebook.html" %}
+    </a>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={{"https://linkedin.com/shareArticle?title=" ~ title ~ "&url=" ~ url ~ "&summary=" ~ description}}
+      class="link-button ghost-button xs-button {{item_class}}"
+    >
+      {% include "partials/icons/linkedin.html" %}
+    </a>
+    <a
+      target="_blank"
+      rel="noreferrer"
+      href={{"https://getpocket.com/save?title=" ~ title ~ "&url=" ~ url}}
+      class="link-button ghost-button xs-button {{item_class}}"
+    >
+      {% include "partials/icons/pocket.html" %}
+    </a>
+    <a
+      class="link-button ghost-button xs-button {{item_class}}"
+      onclick="__copyUrl()">
+      {% include "partials/icons/copy.html" %}
+    </a>
+    <script type="text/javascript">
+      function __copyUrl() {
+        var el = document.createElement(`textarea`)
+        el.value = window.location.href
+        el.setAttribute(`readonly`, ``)
+        el.style.position = `absolute`
+        el.style.left = `-9999px`
+        document.body.appendChild(el)
+        el.select()
+        navigator.clipboard.writeText(window.location.href)
+        document.body.removeChild(el)
+      }
+    </script>
+  </div>
+{% endmacro %}

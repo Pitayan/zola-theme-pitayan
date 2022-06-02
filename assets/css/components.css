@@ -1,7 +1,7 @@
 .site-tag {
   @apply rounded-full;
   @apply py-1 px-2;
-  @apply text-xs;
+  @apply text-sm;
   @apply font-medium;
   @apply bg-gray-200;
   @apply cursor-pointer;
@@ -20,7 +20,6 @@
   @apply text-lg;
   @apply font-medium;
   @apply cursor-pointer;
-  @apply opacity-80;
   @apply hover:underline;
   @apply decoration-1;
   @apply underline-offset-2;
@@ -33,8 +32,6 @@
   @apply leading-normal;
   @apply relative;
   @apply align-middle;
-  /* @apply h-8; */
-  /* @apply w-8; */
 
   img {
     @apply h-full;
@@ -82,13 +79,7 @@
     @apply mb-12;
   }
 
-  &-action {
-    @apply w-[28rem];
-    @apply md:space-x-2;
-  }
-
   &-message {
-    @apply hidden;
   }
 }
 
@@ -223,6 +214,53 @@
       a {
         @apply !text-inverted;
       }
+    }
+  }
+}
+
+.is-drawer-open {
+  @apply fixed;
+  @apply w-full;
+}
+
+.drawer {
+  @apply fixed;
+  @apply hidden;
+  @apply overflow-scroll;
+  @apply z-0;
+
+  &-container {
+    @apply relative;
+    @apply m-0;
+    @apply outline-none;
+  }
+
+  &-top,
+  &-bottom {
+    .drawer-container {
+      @apply max-w-full;
+    }
+  }
+
+  &-top {
+    @apply top-0;
+    @apply right-0;
+    @apply left-0;
+  }
+
+  &-bottom {
+    @apply left-0;
+    @apply bottom-0;
+    @apply right-0;
+  }
+
+  &:target,
+  &.open {
+    @apply block;
+    @apply z-40;
+
+    .$(drawer)-container {
+      @apply z-50;
     }
   }
 }

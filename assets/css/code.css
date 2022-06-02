@@ -1,0 +1,50 @@
+/* Light mode */
+.markdown {
+  code[class*="language-"],
+  pre[class*="language-"] {
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  @media print {
+    code[class*="language-"],
+    pre[class*="language-"] {
+      text-shadow: none;
+    }
+  }
+
+  /* Code blocks */
+  pre[class*="language-"] {
+    overflow: auto;
+    @apply -mx-6;
+    @apply sm:mx-auto;
+
+    @apply sm:!rounded;
+    @apply rounded-none;
+  }
+
+  /* Inline code Highlight */
+  :not(pre) > code {
+    @apply text-gray-800;
+    @apply bg-gray-100;
+    @apply border border-solid border-gray-100;
+    @apply whitespace-normal;
+
+    @apply dark:text-gray-400;
+    @apply dark:bg-gray-800;
+    @apply dark:border-gray-800;
+  }
+}

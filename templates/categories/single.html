@@ -3,13 +3,13 @@
 {% import "macros/pagination.html" as pagination %}
 
 {% block content %}
-  <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-24 capitalize">
-    {{term.name}} <sup class="text-base bg-gray-200 rounded-full p-2 align-super">{{term.pages | length }}</sup>
+  <h2 class="xl:text-6xl lg:text-5xl md:text-4xl text-3xl font-bold text-center mb-12 lg:mb-24 capitalize">
+    {{term.name}} <sup class="text-base bg-gray-200 dark:bg-gray-800 rounded-full p-2 align-super">{{term.pages | length }}</sup>
   </h2>
 
   <hr />
 
-  <p class="my-4 text-xl">Check out the <b class="font-bold">lastest {{term.name}}</b></p>
+  <p class="my-4 text-xl">Check out the <b class="font-bold">posts for {{term.name}}</b></p>
 
   <div class="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     {%- for post in paginator.pages %}

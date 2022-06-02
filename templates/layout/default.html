@@ -1,3 +1,5 @@
+{% import "macros/subscriptionForm.html" as subscriptionForm %}
+
 <!DOCTYPE html>
 <html lang="en" charset="utf-8">
   {% include "partials/head.html" %}
@@ -11,5 +13,7 @@
       <hr />
     {% include "partials/footer.html" %}
     </div>
+    
+    <script defer src="{{get_url(path="js/script.js", trailing_slash=false, cachebust=true)}}"></script>
   </body>
 </html>

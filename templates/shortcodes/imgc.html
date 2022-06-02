@@ -1,5 +1,5 @@
 {%- set respSizes = [600, 900, 1200, 1500] -%}
-{%- set initSrc = resize_image(path=path, width=600, op='fit_width') -%}
+{%- set initSrc = resize_image(path=path, width=600, op='fit_width', format="webp", quality=80) -%}
 <div class="img bg-black dark:bg-blue-800">
   <img 
     class="lazy" 
@@ -9,7 +9,7 @@
     srcset="
     {% for size in respSizes -%}
       {%- if size <= width -%}
-        {%- set imgSrcset = resize_image(path=path, width=size, op='fit_width') -%}
+        {%- set imgSrcset = resize_image(path=path, width=size, op='fit_width', format="webp", quality=80) -%}
         {{ imgSrcset.url }} {{ size }}w
         {%- if not loop.last -%}, {% endif -%}
       {%- endif -%}

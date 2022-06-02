@@ -1,4 +1,4 @@
-button {
+a.link-button, button {
   @apply appearance-none;
   @apply select-none;
   @apply align-middle;
@@ -31,8 +31,7 @@ button {
   &.fill-button,
   &.ghost-button {
     @apply rounded-full;
-    @apply py-2 px-6;
-    @apply md:py-3 md:px-8;
+    @apply py-1.5 px-4;
     @apply transition duration-150;
   }
 
@@ -40,12 +39,16 @@ button {
     @apply bg-gray-900;
     @apply text-white;
 
+    @apply dark:bg-indigo-700;
+
     &:hover {
       @apply bg-indigo-600;
+
+      @apply dark:bg-indigo-600;
     }
 
     &:active {
-      @apply bg-indigo-700;
+      @apply bg-indigo-500;
     }
   }
 
@@ -53,28 +56,46 @@ button {
     @apply text-gray-800;
     @apply bg-gray-200;
 
+    @apply dark:bg-gray-800;
+
     &:hover {
       @apply bg-gray-300;
+      @apply dark:bg-gray-700;
     }
 
     &:active {
       @apply bg-gray-400;
+
+      @apply dark:bg-gray-600;
     }
+  }
+
+  &.responsive-button {
+    @apply md:py-2 md:px-6;
+    @apply lg:py-3 lg:px-8;
+  }
+
+  &.xs-button {
+    @apply py-1.5 px-1.5;
+  }
+
+  &.sm-button {
+    @apply py-1.5 px-4;
+  }
+
+  &.lg-button {
+    @apply py-3 px-8;
   }
 }
 
 input {
   @apply appearance-none;
   @apply border-none;
-  @apply leading-normal;
   @apply shadow-none;
   @apply max-w-full;
   @apply w-full;
   @apply py-1 px-0;
   @apply text-xl;
-
-  /* Dark Mode */
-  @apply dark:bg-gray-900;
 
   min-height: 36px;
   font-stretch: 100%;
@@ -102,11 +123,13 @@ input {
   }
 
   &.default-input {
-    @apply py-2 px-6;
+    @apply py-2.5 px-6;
     @apply md:py-3 md:px-8;
     @apply rounded-full;
     @apply transition duration-150;
     @apply bg-gray-100;
+
+    @apply dark:!bg-gray-800;
   }
 }
 

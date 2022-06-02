@@ -4,8 +4,8 @@
 
 {% block content %}
   {%- set section = get_section(path="posts/_index.md") %}
-  <h2 class="xl:text-7xl lg:text-6xl md:text-5xl text-4xl font-bold text-center mb-24 capitalize">
-    {{section.title}} <sup class="text-base bg-gray-200 rounded-full p-2 align-super">{{section.pages | length}}</sup>
+  <h2 class="xl:text-7xl lg:text-6xl md:text-5xl text-4xl font-bold text-center mb-12 lg:mb-24 capitalize">
+    {{section.title}} <sup class="text-base bg-gray-200 dark:bg-gray-800 rounded-full p-2 align-super">{{section.pages | length}}</sup>
   </h2>
 
   <hr />

@@ -1,0 +1,13 @@
+{% extends "layout/default.html" %}
+{% block content %}
+
+<div class="max-w-screen-md mx-auto mb-4 relative mb-24">
+  <h1 class="text-4xl lg:text-6xl 2xl:text-7xl font-bold lg:tracking-wide mx-auto">
+    {{ page.title }}
+  </h1>
+
+  <article class="article markdown lg:pr-8 lg:mr-auto mx-auto col-span-2">
+    {{ page.content | safe }}
+  </article>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+<meta name="theme-color" content="#fff" />
+<meta itemProp="name" content="{{title}}" />
+<meta itemProp="description" content="{{description}}" />
+<meta itemProp="image" content="{{cover_image_url}}" />
+<meta name="description" content="{{description}}" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="{{title}}" />
+<meta name="twitter:title" content="{{title}}" />
+<meta name="twitter:description" content="{{description}}" />
+{% if twitter %}
+  <meta name="twitter:creator" content="{{twitter}}" />
+{% endif %}
+
+{% if reading_time %}
+  <meta name="twitter:label1" content="Reading time" />
+  <meta name="twitter:data1" content="{{reading_time}} min read" />
+{% endif %}
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="{{title}}" />
+<meta property="og:url" content="{{url}}" />
+<meta property="og:image" content="{{cover_image_url}}" />
+<meta property="og:description" content="{{description}}" />
+<meta property="og:site_name" content="{{title}}" />

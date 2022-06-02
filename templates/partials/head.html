@@ -1,25 +1,65 @@
-{% set cloudiBase = 'https://res.cloudinary.com/brycewray-com/image/upload/' %}
-{% set xFmPart1 = 'f_auto,q_auto:eco,w_' %}
-{% set xFmPart2 = ',x_0,z_1/' %}
-{% set fallbackImg = 'typewriter-monochrome_2242164_6260x4374.jpg' %}
-{% set zolaVer = '0.13.0' %}
+{# Title #}
+{% set title = config.title %}
+{% if section.title %}
+  {% set title = section.title ~ " | " ~ config.title %}
+{% elif page.title %}
+  {% set title = page.title ~ " | " ~ config.title %}
+{% elif taxonomy.name %}
+  {% set page_name = taxonomy.name | capitalize %}
+  {% set title = page_name ~ " | " ~ config.title %}
+{% elif paginator.title %}
+  {% set title = paginator.title ~ " | " ~ config.title %}
+{% endif %}
+
+{# Description #}
+{% set description = config.description %}
+{% if page.description %}
+  {% set description = page.description %}
+{% endif %}
+
+{# Reading time #}
+{% set reading_time = "" %}
+{% if section.reading_time %}
+  {% set reading_time = section.reading_time %}
+{% elif page.reading_time %}
+  {% set reading_time = page.reading_time %}
+{% endif %}
+
+{# Twitter #}
+{% set twitter = config.extra.sns.twitter %}
+
+{% set url = config.base_url %}
+{% if section.permalink %}
+  {% set url = section.permalink %}
+{% elif page.permalink %}
+  {% set url = page.permalink %}
+{% endif %}
+
+{% set cover_image_url = config.base_url ~ "/" ~ config.extra.site_cover %}
+{% if page.extra.image %}
+  {% set page_path = page.relative_path | split(pat="/") %}
+  {% set cover_image_url = page_path[0] ~ "/" ~ page_path[1] ~ "/" ~ page.extra.image %}
+{% endif %}
+
 
 <head>
-  <meta name="generator" content="Zola v.{{ zolaVer }} - getzola.org" />
-
   {% block title %}
-  {% if current_path == '/' %}
-  <title>{{ config.title }}</title>
-  <meta property="og:title" content="{{ config.title }}" />
-  {% else %}
-  <title>{% if section.title %}{{ section.title }} &bull; {% endif %}{% if page.title %}{{ page.title }} &bull; {% endif %}{{ config.title }}</title>
-  <meta property="og:title" content="{% if section.title %}{{ section.title }} &bull; {% endif %}{% if page.title %}{{ page.title }} &bull; {% endif %}{{ config.title }}" />
-  {% endif %}
+    <title>{{title}}</title>
   {% endblock title %}
 
   <!-- Required meta tags -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Required SEO tags -->
+
+  {% block meta %}
+    {% include "partials/meta.html" %}
+  {% endblock meta %}
+
+  {% block schema %}
+    {% include "partials/schema.html" %}
+  {% endblock schema %}
 
   <!-- **** BEGINNING, favicons **** -->
 
@@ -36,6 +76,16 @@
   <!-- **** CONCLUSION, favicons **** -->
 
   <!-- CSS/SCSS -->
-  <link rel="stylesheet" href="{{ get_url(path="css/style.css", trailing_slash=false, cachebust=true) | safe }}" />  <style>@-moz-document url-prefix() {.lazy:-moz-loading {visibility:hidden;}}.ieOnly {display: none;}@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {.ieOnly {display: block;}}</style>
+  <link rel="stylesheet" href="{{ get_url(path="css/style.css", trailing_slash=false, cachebust=true) | safe }}" />  
+  <style>@-moz-document url-prefix() {.lazy:-moz-loading {visibility:hidden;}}.ieOnly {display: none;}@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {.ieOnly {display: block;}}</style>
+
+  <!-- Toggle Theme -->
+  <script type="text/javascript">
+    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  </script>
   
 </head>

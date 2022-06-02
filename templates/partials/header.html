@@ -1,18 +1,276 @@
 <header class="my-12 flex justify-between items-center content-center">
   <a href="/" class="block flex justify-center items-center space-x-2">
     {% include "partials/siteLogo.html" %}
-    <b class="text-3xl text-gray-900 font-bold block font-serif font-black">
+    <b class="text-3xl md:text-4xl hidden sm:block font-serif font-black">
       Pitayan
     </b>
   </a>
   <nav role="navigation" class="flex items-center justify-between space-x-2">
-    <button class="ghost-button flex items-center space-x-3">
-      {% include "partials/searchIcon.html" %}
+    <div class="drawer drawer-top h-full" id="__searchDrawer">
+      <div class="drawer-container z-50 overflow-y-scroll" id="__searchContainer">
+        <div class="search-content bg-white opacity-100 dark:bg-gray-800 py-6 md:px-8 px-4 z-50 overflow-y-scroll">
+          <form class="search-form" onsubmit="return false">
+            <div class="relative">
+              <input 
+                id="__searchInput" 
+                autofocus 
+                tabindex="0" 
+                oninput="__handleSearchInput(event)"
+                class="search-input pr-12 md:pr-16 bg-transparent text-5xl font-bold tracking-wide placeholder:text-5xl placeholder:text-gray-900 dark:placeholder:text-gray-100" type="text" placeholder="Search">
+              <button class="ghost-button xs-button ml-auto absolute top-0 right-0 text-3xl translate-y-1/2" type="submit" onclick="__toggleSearchDrawer()">
+                {% include "partials/icons/close.html" %}
+              </button>
+            </div>
+            <div class="search-meta my-2 opacity-70">
+              <span class="search-info">Please enter at least 3 characters</span>
+            </div>
+          </form>
+          <ul class="search-results list-none" id="__searchResults"></ul>
+        </div>
+      </div>
+      <div class="search-overlay absolute top-0 left-0 min-h-full w-full z-10 opacity-50 bg-gray-900" onclick="__toggleSearchDrawer()"></div>
+    </div>
+    <button class="ghost-button responsive-button flex items-center space-x-3" onclick="__toggleSearchDrawer()">
+      {% include "partials/icons/search.html" %}
       <span class="hidden md:block">Search</span>
     </button>
-    <button class="fill-button flex items-center space-x-3">
-      {% include "partials/sunIcon.html" %}
-      <span class="hidden md:block">Dark</span>
+    <button class="fill-button responsive-button flex items-center space-x-3" onclick="__toggleThemeDark()">
+      <span class="">
+        {% include "partials/icons/sun.html" %}
+      </span>
+      <span class="hidden md:block">Theme</span>
     </button>
+    <script type="text/javascript">
+      var __searchScriptLoaded = false
+      function __loadSearchScript() {
+        if (__searchScriptLoaded) return
+
+        var script1 = document.createElement('script')
+        script1.src = "/search_index.en.js"
+        script1.type = "text/javascript"
+
+        var script2 = document.createElement('script')
+        script2.src = "/elasticlunr.min.js"
+        script2.type = "text/javascript"
+
+        document.head.appendChild(script1)
+        document.head.appendChild(script2)
+
+        __searchScriptLoaded = true
+      }
+
+      function __keyboardESCHandler(e) {
+        if (e.key == "Escape") {
+          __toggleSearchDrawer()
+        }
+      }
+
+      var __searchDrawer = document.getElementById("__searchDrawer")
+      var __searchContainer = document.getElementById("__searchContainer")
+      var __searchInput = document.getElementById("__searchInput")
+      var __searchResults = document.getElementById("__searchResults")
+      function __toggleSearchDrawer(e) {
+        __loadSearchScript()
+
+        if (__searchDrawer.classList.contains("open")) {
+          __searchContainer.classList.add("slide-out-up")
+
+          document.addEventListener("animationend", function temp() {
+            document.body.classList.remove("is-drawer-open")
+            __searchDrawer.classList.remove("open")
+            __searchContainer.classList.remove("slide-in-down")
+            __searchInput.value = ""
+            __searchResults.innerHTML = ""
+            document.removeEventListener('animationend', temp)
+          })
+
+          window.removeEventListener('keyup', __keyboardESCHandler)
+        } else {
+          document.body.classList.add("is-drawer-open")
+          __searchDrawer.classList.add("open")
+          __searchContainer.classList.add("slide-in-down")
+          __searchContainer.classList.remove("slide-out-up")
+          __searchInput.focus()
+          __searchInput.value = ""
+          window.addEventListener('keyup', __keyboardESCHandler)
+        }
+      }
+
+      function __debounce(func, wait) {
+        var timeout
+
+        return function () {
+          var context = this
+          var args = arguments
+          clearTimeout(timeout)
+
+          timeout = setTimeout(function () {
+            timeout = null
+            func.apply(context, args)
+          }, wait)
+        }
+      }
+
+      // Refers to https://github.com/getzola/zola/blob/master/docs/static/search.js
+      function __makeTeaser(body, terms) {
+        var TERM_WEIGHT = 40
+        var NORMAL_WORD_WEIGHT = 2
+        var FIRST_WORD_WEIGHT = 8
+        var TEASER_MAX_WORDS = 30
+
+        var stemmedTerms = terms.map(function (w) {
+          return elasticlunr.stemmer(w.toLowerCase())
+        })
+        var termFound = false
+        var index = 0
+        var weighted = []
+
+        // split in sentences, then words
+        var sentences = body.toLowerCase().split(". ")
+
+        for (var i in sentences) {
+          var words = sentences[i].split(" ")
+          var value = FIRST_WORD_WEIGHT
+
+          for (var j in words) {
+            var word = words[j]
+
+            if (word.length > 0) {
+              for (var k in stemmedTerms) {
+                if (elasticlunr.stemmer(word).startsWith(stemmedTerms[k])) {
+                  value = TERM_WEIGHT
+                  termFound = true
+                }
+              }
+              weighted.push([word, value, index])
+              value = NORMAL_WORD_WEIGHT
+            }
+
+            index += word.length
+            index += 1  // ' ' or '.' if last word in sentence
+          }
+
+          index += 1  // because we split at a two-char boundary '. '
+        }
+
+        if (weighted.length === 0) {
+          return body
+        }
+
+        var windowWeights = []
+        var windowSize = Math.min(weighted.length, TEASER_MAX_WORDS)
+        // We add a window with all the weights first
+        var curSum = 0
+        for (var i = 0; i < windowSize; i++) {
+          curSum += weighted[i][1]
+        }
+        windowWeights.push(curSum)
+
+        for (var i = 0; i < weighted.length - windowSize; i++) {
+          curSum -= weighted[i][1]
+          curSum += weighted[i + windowSize][1]
+          windowWeights.push(curSum)
+        }
+
+        // If we didn't find the term, just pick the first window
+        var maxSumIndex = 0
+        if (termFound) {
+          var maxFound = 0
+          // backwards
+          for (var i = windowWeights.length - 1; i >= 0; i--) {
+            if (windowWeights[i] > maxFound) {
+              maxFound = windowWeights[i]
+              maxSumIndex = i
+            }
+          }
+        }
+
+        var teaser = []
+        var startIndex = weighted[maxSumIndex][2]
+        for (var i = maxSumIndex; i < maxSumIndex + windowSize; i++) {
+          var word = weighted[i]
+          if (startIndex < word[2]) {
+            // missing text from index to start of `word`
+            teaser.push(body.substring(startIndex, word[2]))
+            startIndex = word[2]
+          }
+
+          // add <em/> around search terms
+          if (word[1] === TERM_WEIGHT) {
+            teaser.push("<mark>")
+          }
+          startIndex = word[2] + word[0].length
+          teaser.push(body.substring(word[2], startIndex))
+
+          if (word[1] === TERM_WEIGHT) {
+            teaser.push("</mark>")
+          }
+        }
+        teaser.push("…")
+        return teaser.join("")
+      }
+
+      function __createResultItem(ref, title, body, terms) {
+        return '<div class="search-result-item mb-12">'
+        + `<a class="site-link block mb-4" href="${ref}"><h2 class="font-bold">${title}</h3></a>`
+        + `<a href="${ref}"><p>${__makeTeaser(body, terms)}</p></a>`
+        + '</div>'
+      }
+      
+      var __searchIndex = null
+      var __handleSearchInput = __debounce(function(e) {
+        if (!('elasticlunr' in window) || !('searchIndex' in window)) return
+        var term = e.target.value.trim()
+        __searchResults.innerHTML = ""
+
+        if (term.length < 3) {
+          return
+        }
+        
+        if (!__searchIndex) {
+          __searchIndex = elasticlunr.Index.load(window.searchIndex)
+        }
+
+        var result = __searchIndex.search(term, {
+          bool: "AND",
+          fields: {
+            title: {boost: 2},
+            body: {boost: 1},
+          }
+        })
+
+        if (!result.length) {
+          __searchResults.innerHTML = ""
+          return
+        }
+
+        for (var i = 0; i < Math.min(result.length, 12); i++) {
+          // filter by post path
+          if (!/\/posts\//.test(result[i].ref)) continue
+          var item = document.createElement("li")
+          item.innerHTML = __createResultItem(result[i].ref, result[i].doc.title, result[i].doc.body, term.split(" "))
+          __searchResults.appendChild(item)
+        }
+      }, 200)
+    </script>
+
+    <script type="text/javascript">
+      function __isThemeDark() {
+        return localStorage.theme === "dark" ||
+          (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)
+      }
+
+      function __toggleThemeDark() {
+        var isDark = document.documentElement.classList.contains("dark")
+        if (isDark) {
+          document.documentElement.classList.remove("dark")
+        } else {
+          document.documentElement.classList.add("dark")
+        }
+
+        // Whenever the user explicitly chooses light mode
+        localStorage.theme = !isDark ? "dark" : "light"
+      }
+    </script>
   </nav>
 </header>

@@ -92,13 +92,15 @@ kbd {
 }
 
 mark {
-  @apply bg-yellow-400;
-  @apply border-b-2 border-solid border-yellow-600;
+  @apply bg-amber-300;
+  @apply border-b-2 border-solid border-amber-500;
   @apply rounded;
   @apply px-1 pt-px;
 
   /* Dark Mode */
   @apply dark:text-gray-900;
+  @apply bg-amber-400;
+  @apply border-amber-600;
 }
 
 /* The inline code tag */
@@ -175,5 +177,16 @@ dl {
 
   dd {
     @apply mx-0 mt-4 mb-8;
+  }
+}
+
+details {
+  summary {
+    @apply cursor-pointer;
+  }
+
+  summary::marker,
+  summary::-webkit-details-marker {
+    @apply pr-px;
   }
 }

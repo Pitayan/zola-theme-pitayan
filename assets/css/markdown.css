@@ -1,6 +1,5 @@
 .markdown {
-  @apply mark-w-sm;
-  @apply md:mark-w-md;
+  @apply max-w-screen-md;
 
   h1,
   h2,
@@ -51,6 +50,10 @@
 
     p {
       @apply mb-0;
+    }
+
+    a {
+      @apply font-bold;
     }
   }
 

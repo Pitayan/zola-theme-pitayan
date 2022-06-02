@@ -3,13 +3,15 @@
   "description": "This is a starter set for the [Zola](https://getzola.org) [static site generator (SSG)](https://www.jamstack.org/generators), based on the appearance of my website at [brycewray.com](https://www.brycewray.com).",
   "private": true,
   "scripts": {
-    "clean": "rimraf public && rimraf static/css",
-    "initcss": "node initcss.js",
-    "start": "TAILWIND_MODE=watch NODE_ENV=development npm-run-all clean initcss --parallel dev:*",
+    "clean": "rimraf public && rimraf static/css static/js",
+    "initassets": "node initassets.js",
+    "start": "TAILWIND_MODE=watch NODE_ENV=development npm-run-all clean initassets --parallel dev:*",
     "dev:css": "postcss assets/css/style.css -o ./static/css/style.css -w",
+    "dev:js": "NODE_ENV=development node copy.js",
     "dev:serve": "zola serve",
-    "build": "NODE_ENV=production npm-run-all clean prod:css prod:build",
+    "build": "NODE_ENV=production npm-run-all clean initassets prod:js prod:css prod:build",
     "prod:css": "postcss assets/css/style.css -o ./static/css/style.css",
+    "prod:js": "NODE_ENV=production node copy.js",
     "prod:build": "zola build"
   },
   "author": "",
@@ -21,6 +23,7 @@
   ],
   "devDependencies": {
     "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.11",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "postcss-cli": "^9.1.0",

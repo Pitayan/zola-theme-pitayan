@@ -1,0 +1,64 @@
+{% macro render(mailchimp_endpoint="", class="") %}
+<form class="relative {{class}}" onsubmit="return false">
+  <input
+    placeholder="Your email address"
+    aria-label="Your email address"
+    name="email"
+    type="email"
+    class="default-input md:!pr-44 !pl-8"
+    formNoValidate
+    required=""
+    />
+  <button
+    class="fill-button lg-button ml-auto absolute top-0 right-0"
+    type="submit"
+    >
+    Subscribe
+  </button>
+  <div class="subscription-message my-2">
+    <small></small>
+  </div>
+  <script type="text/javascript">
+    (function() {
+      var form = document.currentScript.parentElement
+      var input = form.querySelector('input')
+      var button = form.querySelector('button')
+      var message = form.querySelector('div.subscription-message small')
+
+      button.onclick = function() {
+        var email = input.value.trim()
+        if (!email) return
+
+        __subscribeMailChimp(email, "{{mailchimp_endpoint | safe}}", 3500)
+          .then(function(data) {
+            if (data.result === "error") {
+              throw data
+            }
+
+            button.disabled = true
+            message.classList.add("text-green-600")
+            message.innerText = "Please check your inbox and click the link to confirm your subscription."
+
+            setTimeout(() => {
+              button.disabled = false
+              input.value = ""
+              message.innerText = ""
+              message.classList.remove("text-green-600")
+            }, 6000)
+          })
+          .catch(function(error) {
+            message.classList.add("text-red-600")
+            message.innerText = `${error.msg}`
+
+            setTimeout(() => {
+              button.disabled = false
+              input.value = ""
+              message.innerText = ""
+              message.classList.remove("text-red-600")
+            }, 6000)
+          })
+      }
+    })()
+  </script>
+</form>
+{% endmacro %}

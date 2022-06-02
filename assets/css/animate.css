@@ -1,0 +1,77 @@
+@keyframes slide-in-down {
+  from {
+    transform: translate3d(0, -100%, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 100;
+  }
+}
+
+.slide-in-down {
+  animation-name: slide-in-down;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slide-out-up {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 100;
+  }
+
+  to {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.slide-out-up {
+  animation-name: slide-out-up;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+
+
+@keyframes slide-out-down {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 100;
+  }
+
+  to {
+    transform: translate3d(0, 100%, 0);
+    visibility: visible;
+    opacity: 0;
+  }
+}
+
+.slide-out-down {
+  animation-name: slide-out-down;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slide-in-up {
+  from {
+    transform: translate3d(0, 100%, 0);
+    opacity: 0;
+  }
+
+  to {
+    visibility: visible;
+    opacity: 100;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.slide-in-up {
+  animation-name: slide-in-up;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+

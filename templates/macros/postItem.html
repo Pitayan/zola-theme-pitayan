@@ -2,7 +2,8 @@
 {% import "macros/postCategories.html" as postCategories %}
 
 {% macro render(post, display_categories=true, display_meta=true, display_description=true) %}
-{% set src = post.path ~ post.extra.image %}
+{% set post_folder_path = post.relative_path | split(pat="/") %}
+{% set src = post_folder_path[0] ~ "/" ~ post_folder_path[1] ~ "/" ~ post.extra.image %}
 <article class="post-item">
   <div class="post-image">
     <a href="{{get_url(path="@/"~post.relative_path)}}">

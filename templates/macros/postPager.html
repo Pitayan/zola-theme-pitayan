@@ -4,8 +4,9 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 auto-cols-max gap-x-8 {{ class }}">
   {% if post.later %}
     <div class="flex items-center lg:my-4">
-      <a href="{{post.later.permalink}}">
-        {% set src = post.later.path ~ post.later.extra.image %}
+      <a class="hidden sm:block" href="{{post.later.permalink}}">
+        {% set post_folder_path = post.later.relative_path | split(pat="/") %}
+        {% set src = post_folder_path[0] ~ "/" ~ post_folder_path[1] ~ "/" ~ page.later.extra.image %}
         {{image::render(
         src=src,
         alt=page.later.title,
@@ -30,8 +31,9 @@
           <h3 class="font-extrabold">{{post.earlier.title}}</h3>
         </a>
       </div>
-      <a href="{{post.earlier.permalink}}">
-        {% set src = post.earlier.path ~ post.earlier.extra.image %}
+      <a class="hidden sm:block" href="{{post.earlier.permalink}}">
+        {% set post_folder_path = post.earlier.relative_path | split(pat="/") %}
+        {% set src = post_folder_path[0] ~ "/" ~ post_folder_path[1] ~ "/" ~ page.earlier.extra.image %}
         {{image::render(
         src=src,
         alt=page.earlier.title,
