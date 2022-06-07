@@ -12,28 +12,10 @@ extra:
   keywords: CSS pseudo selector
   image: ./images/cover_image.png
 ---
-import './PseudoStyle.css'
+
+<link rel="stylesheet" href="PseudoStyle.css" />
 
 This article suggests using more CSS and less JS to construct the web UI. To realize this target, it's preferrable to get farmiliar with as many as possible of CSS features. But it's quite difficult to know all them. Another solution instead is to follow the best pratices and reduce the code quantity.
-
-Pseudo selectors to cover in this article:
-- [1. :first-line](#1-first-line)
-- [2. :first-letter](#2-first-letter)
-- [3. ::selection](#3-selection)
-- [4. :root](#4-root)
-- [5. :empty](#5-empty)
-- [6. :only-child](#6-only-child)
-- [7. :first-of-type](#7-first-of-type)
-- [8. :last-of-type](#8-last-of-type)
-- [9. :nth-of-type()](#9-nth-of-type)
-- [10. :nth-last-of-type()](#10-nth-last-of-type)
-- [11. :link](#11-link)
-- [12. :valid](#12-valid)
-- [13. :invalid](#13-invalid)
-- [14. :lang()](#14-lang)
-- [15. :not()](#15-not)
-- [References](#references)
-
 
 ## 1. :first-line
 It represents the first line of text as its name implies.
@@ -47,10 +29,10 @@ pre:first-line {
 }
 ```
 
-<pre className="demo first-line">
+<p class="demo first-line">
 ::first-line
 selector
-</pre>
+</p>
 <br />
 <br />
 
@@ -66,12 +48,12 @@ p:first-letter {
 }
 ```
 
-<p className="demo first-letter">
+<p class="demo first-letter">
 ::first-letter selector
 </p>
 
 ## 3. ::selection
-The `selection` selector means those text you selected and highlighted. The color is <b className="bg-blue-300">blue</b> by default for most of the browsers.
+The `selection` selector means those text you selected and highlighted. The color is <b class="bg-blue-300">blue</b> by default for most of the browsers.
 
 Browser Compatibility: https://caniuse.com/#search=%3Aselection
 
@@ -81,7 +63,7 @@ p::selection {
 }
 ```
 
-<p className="demo selection">
+<p class="demo selection">
 ::selection selector
 </p>
 
@@ -104,7 +86,7 @@ p {
 }
 ```
 
-<p className="demo root">
+<p class="demo root">
 ::root selector
 </p>
 
@@ -128,7 +110,7 @@ p:empty {
 <p><div style="display:hidden;"></div></p>
 ```
 
-<p className="demo empty"></p>
+<p class="demo empty"></p>
 
 
 ## 6. :only-child
@@ -149,7 +131,7 @@ div:only-child {
 ```
 
 <div>
-  <p className="demo only-child">only child</p>
+  <p class="demo only-child">only child</p>
 </div>
 
 
@@ -172,9 +154,9 @@ p:first-of-type {
 </div>
 ```
 
-<div className="mark-w-md">
+<div class="mark-w-md">
   <div>1</div>
-  <p className="demo first-of-type">2</p>
+  <p class="demo first-of-type">2</p>
   <p>3</p>
 </div>
 
@@ -198,10 +180,10 @@ p:last-of-type {
 </div>
 ```
 
-<div className="mark-w-md">
+<div class="mark-w-md">
   <div>1</div>
   <p>2</p>
-  <p className="demo last-of-type">3</p>
+  <p class="demo last-of-type">3</p>
 </div>
 
 
@@ -224,10 +206,10 @@ P:nth-of-type(2) {
 </div>
 ```
 
-<div className="mark-w-md">
+<div class="mark-w-md">
   <div>1</div>
   <p>2</p>
-  <p className="demo nth-of-type">3</p>
+  <p class="demo nth-of-type">3</p>
 </div>
 
 ## 10. :nth-last-of-type()
@@ -249,9 +231,9 @@ P:nth-last-of-type(2) {
 </div>
 ```
 
-<div className="mark-w-md">
+<div class="mark-w-md">
   <div>1</div>
-  <p className="demo nth-last-of-type">2</p>
+  <p class="demo nth-last-of-type">2</p>
   <p>3</p>
 </div>
 
@@ -268,7 +250,7 @@ a:link {
 ```
 
 <p>
-  <a className="demo unvisited-link" href="#11-link">:link</a>
+  <a class="demo unvisited-link" href="#11-link">:link</a>
 </p>
 
 
@@ -283,8 +265,8 @@ input:valid {
 }
 ```
 
-<div className="mark-w-md">
-  <input className="demo valid mark-w-md" valid type="text" value=":valid" />
+<div class="mark-w-md">
+  <input class="demo valid mark-w-md" valid type="text" value=":valid" />
 </div>
 
 <br />
@@ -303,8 +285,8 @@ input:invalid {
 }
 ```
 
-<div className="mark-w-md">
-  <input className="demo invalid mark-w-md" type="email" value=":invalid" />
+<div class="mark-w-md">
+  <input class="demo invalid mark-w-md" type="email" value=":invalid" />
 </div>
 
 <br />
@@ -329,7 +311,7 @@ p[lang|="ja"] {
 }
 ```
 
-<p className="demo lang" lang="ja">こんにちは</p>
+<p class="demo lang" lang="ja">こんにちは</p>
 
 
 ## 15. :not()
@@ -351,7 +333,7 @@ div :not(p) {
 </div>
 ```
 
-<div className="demo not mark-w-md">
+<div class="demo not mark-w-md">
   <div>1</div>
   <p>2</p>
   <div>3</div>
@@ -364,5 +346,5 @@ Thank you reading!
 
 
 ## References
-- https://www.w3schools.com/cssref/css_selectors.asp
-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors
+- [https://www.w3schools.com/cssref/css_selectors.asp](https://www.w3schools.com/cssref/css_selectors.asp)
+- [https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors)

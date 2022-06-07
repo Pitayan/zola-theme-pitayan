@@ -24,23 +24,6 @@ In order to know more about what Redux benefits from FP, I researched the [Redux
 
 > Never be afraid of reinventing the wheel.
 
-**Contents:**
-- [Recap How Redux Works](#recap-how-redux-works)
-- [Redux Approach Comparison: FP vs OOP](#redux-approach-comparison-fp-vs-oop)
-- [Wonderful Redux FP Design](#wonderful-redux-fp-design)
-    - [createStore](#createstore)
-    - [combineReducers](#combinereducers)
-    - [applyMiddleware](#applymiddleware)
-- [Redux Middlewares](#redux-middlewares)
-    - [Redux Thunk](#redux-thunk)
-    - [Redux Logger](#redux-logger)
-- [A demo app](#a-demo-app)
-- [Conclusion](#conclusion)
-- [References](#references)
-
-<br />
-<br />
-
 ## Recap How Redux Works
 
 There are 4 basic key points for [Redux](https://redux.js.org):
@@ -379,9 +362,9 @@ Thank you reading!
 
 ## References
 
-- https://redux.js.org
-- https://github.com/reduxjs/redux
-- https://en.wikipedia.org/wiki/Distributive_property
-- https://en.wikipedia.org/wiki/Associative_property
-- https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44
-- https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6?source=search_post---------3
+- [https://redux.js.org](https://redux.js.org)
+- [https://github.com/reduxjs/redux](https://github.com/reduxjs/redu)
+- [https://en.wikipedia.org/wiki/Distributive_property](https://en.wikipedia.org/wiki/Distributive_property)
+- [https://en.wikipedia.org/wiki/Associative_property](https://en.wikipedia.org/wiki/Associative_property)
+- [https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44](https://medium.com/javascript-scene/10-tips-for-better-redux-architecture-69250425af44)
+- [https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6?source=search_post---------3](https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6?source=search_post---------3)

@@ -92,4 +92,4 @@ Okay, this is all for `JSON.stringify`. Hope this article will help everyone gai
 If you think this article is great, please do share it on the social network. Thanks for reading!
 
 ## References
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+- [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)

@@ -16,23 +16,6 @@ extra:
 
 Now [Vue.js](https://vuejs.org) has become a hot framework for front end development. There are a lot of engineers utilizing the convenience and powerful features of [Vue.js](https://vuejs.org). Yet, some of the solutions we've done might not follow the best practice. Well, let's take a look at those must-know [Vue](https://vuejs.org) techniques.
 
-Contents:
-- [1. Functional Component](#1-functional-component)
-- [2. Deep Selectors](#2-deep-selectors)
-- [3. Advanced "watcher"](#3-advanced-watcher)
-    - [execute immedately](#execute-immedately)
-    - [deep listening](#deep-listening)
-    - [multiple handlers](#multiple-handlers)
-    - [subscribe to multiple variables mutation](#subscribe-to-multiple-variables-mutation)
-- [4. Event argument: $event](#4-event-argument-event)
-    - [native events](#native-events)
-    - [custom events](#custom-events)
-- [5. Router Parameter Decoupling](#5-router-parameter-decoupling)
-- [6. Two-way Binding for Custom Components](#6-two-way-binding-for-custom-components)
-- [7. Component Lifecycle Hook](#7-component-lifecycle-hook)
-- [8. Event Listener APIs](#8-event-listener-apis)
-- [9. Mount Components Programmatically](#9-mount-components-programmatically)
-- [References](#references)
 
 ## 1. Functional Component
 A [functional component](https://vuejs.org/v2/guide/render-function.html#Functional-Components) is **stateless** and has not `lifecycle` or `methods`. So it cannot be instantiated

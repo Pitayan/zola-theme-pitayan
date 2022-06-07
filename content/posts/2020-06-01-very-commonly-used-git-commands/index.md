@@ -15,7 +15,6 @@ extra:
 
 The article is going to cover the following Git commands that will likely make you more efficient on using Git. Hopefully you'd like to put them into your daily practice.
 
->
 1. git show
 2. git rev-parse
 3. git rebase

@@ -39,7 +39,7 @@ Here is the article of me creating my first ever CSS framework [Rotala.css](http
 Believe it or not, all of these "cool looking" features went through a lot of "back and forth" which consumed large amount of my time (I could have done something else much more "engineering"). Well, the final result is just in front of you, it looks elegant minimal and fashionable. Hope you find it enjoyable as well.
 
 <p>
-  <iframe src="https://giphy.com/embed/UqWpaUdQIGueToU7ig" width="100%" frameBorder="0" className="giphy-embed mark-w-md h-96" allowFullScreen></iframe>
+  <iframe src="https://giphy.com/embed/UqWpaUdQIGueToU7ig" width="100%" frameBorder="0" class="giphy-embed mark-w-md h-96" allowFullScreen></iframe>
 </p>
 
 

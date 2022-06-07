@@ -184,7 +184,7 @@ Thank you reading!
 
 
 ## References
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift
-- https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
-- https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-- https://gist.github.com/webbower/8d19b714ded3ec53d1d7ed32b79fdbac
+- [https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Unsigned_right_shift)
+- [https://en.wikipedia.org/wiki/Fisher–Yates_shuffle](https://en.wikipedia.org/wiki/Fisher‚ÄìYates_shuffle)
+- [https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array](https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array)
+- [https://gist.github.com/webbower/8d19b714ded3ec53d1d7ed32b79fdbac](https://gist.github.com/webbower/8d19b714ded3ec53d1d7ed32b79fdbac)

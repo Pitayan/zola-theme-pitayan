@@ -100,6 +100,7 @@ This "signature" together with the user id (can also use some other user related
 When user sends a request together with this token, servers will take some parts ("header" and "payload") from the token and regenerate the "signature". If the signature of the given "token" is the same to the regenerated one, then the user can be considered as logged in. Server should fetch and return the user data. Otherwise, authentication should fail.
 
 Note that,
+
 >Signature is not encryption!
 
 This means we can’t put any sensitive data into the "Token". Because people will still get what’s written in the "Token" easily. 
@@ -120,6 +121,7 @@ Wait… If this can be decoded and seen by anyone else, then it is never safe, i
 Right, if someone stole your token and pretend he is you then server doesn’t know this "someone" is the real you or not. 
 
 In another word, 
+
 > One with a "valid" token is a "valid" user.
 
 But this indeed removes the burden of servers managing sessions for user since servers just need to authenticate whether the "token" is valid without remembering any sessions. 

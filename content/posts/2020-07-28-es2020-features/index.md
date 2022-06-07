@@ -239,6 +239,6 @@ Thank you for reading!
 
 
 ## References
-- https://www.freecodecamp.org/news/javascript-new-features-es2020/
-- https://www.jianshu.com/p/416a0931e96c
+- [https://www.freecodecamp.org/news/javascript-new-features-es2020/](https://www.freecodecamp.org/news/javascript-new-features-es2020/)
+- [https://www.jianshu.com/p/416a0931e96c](https://www.jianshu.com/p/416a0931e96c)
 

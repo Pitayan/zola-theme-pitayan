@@ -88,12 +88,14 @@
   }
 
   function jsonpPromise (url, timeout = 300) {
-    return new Promise((resolve, reject) => jsonp(url, { param: "c", timeout }, (err, data) => {
-      if (err)
-        reject(err)
-      if (data)
-        resolve(data)
-    }))
+    return new Promise(function(resolve, reject) {
+      return jsonp(url, { param: "c", timeout }, function(err, data) {
+        if (err)
+          reject(err)
+        if (data)
+          resolve(data)
+      })
+    })
   }
 
   // Refers to

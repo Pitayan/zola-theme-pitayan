@@ -413,9 +413,9 @@ Yay! It works!
 
 
 ## References
-- https://reactrouter.com/
-- https://github.com/ReactTraining/react-router
-- https://knowbody.github.io/react-router-docs/
-- https://stackoverflow.com/questions/42123261/programmatically-navigate-using-react-router-v4
-- https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm
-- https://reactjs.net/features/react-router.html
+- [https://reactrouter.com/](https://reactrouter.com/)
+- [https://github.com/ReactTraining/react-router](https://github.com/ReactTraining/react-router)
+- [https://knowbody.github.io/react-router-docs/](https://knowbody.github.io/react-router-docs/)
+- [https://stackoverflow.com/questions/42123261/programmatically-navigate-using-react-router-v4](https://stackoverflow.com/questions/42123261/programmatically-navigate-using-react-router-v4)
+- [https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm](https://www.kirupa.com/react/creating_single_page_app_react_using_react_router.htm)
+- [https://reactjs.net/features/react-router.html](https://reactjs.net/features/react-router.html)

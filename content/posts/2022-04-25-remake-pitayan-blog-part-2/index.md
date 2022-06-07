@@ -25,7 +25,7 @@ I can only use my spare time on my personal projects. And almost all of my time 
 As a consequence, those intermittent contributions caused many back and forth due to lacking of appropriate objectives ahead of starting those projects.
 
 <p>
-  <iframe src="https://giphy.com/embed/yv1ggi3Cbase05a8iS" width="100%" frameBorder="0" className="giphy-embed mark-w-md h-96" allowFullScreen></iframe>
+  <iframe src="https://giphy.com/embed/yv1ggi3Cbase05a8iS" width="100%" frameBorder="0" class="giphy-embed mark-w-md h-96" allowFullScreen></iframe>
 </p>
 
 Thus this time, I setup some practical objectives and list out the necessary "todos" under each of its items. 
