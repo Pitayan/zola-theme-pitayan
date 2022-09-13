@@ -1,0 +1,9 @@
+name = "zola-theme-pitayan"
+description = "A minimal blog template supporting dark & light theme, using Tailwindcss"
+license = "MIT"
+homepage = "https://github.com/Pitayan/zola-theme-pitayan"
+min_version = "0.1.0"
+
+[author]
+name = "Yanze Dai"
+homepage = "https://daiyanze.com"
