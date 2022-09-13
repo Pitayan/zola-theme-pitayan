@@ -9,7 +9,7 @@ The pitayan theme for Zola static site generator
 - [x] Subscription function
 - [x] Customizable footer
 - [x] Cookies compliance prompt
-- [ ] Google Adsense script
+- [ ] FIXME: partials/head.html posts url should be dynamic to current content
 - [ ] authorSocial optimize with config.extra.social_links
 - [ ] Mobile Lighthouse optimization
 - [ ] Pagination optimization when there are lots of pages

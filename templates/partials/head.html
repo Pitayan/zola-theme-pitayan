@@ -37,8 +37,12 @@
 
 {% set cover_image_url = config.base_url ~ "/" ~ config.extra.site_cover %}
 {% if page.extra.image %}
-  {% set page_path = page.relative_path | split(pat="/") %}
-  {% set cover_image_url = page_path[0] ~ "/" ~ page_path[1] ~ "/" ~ page.extra.image %}
+  {% if page.slug %}
+    {% set cover_image_url = config.base_url ~ "/posts/" ~ page.slug ~ "/" ~ page.extra.image %}
+  {% else %}
+    {% set page_path = page.relative_path | split(pat="/") %}
+    {% set cover_image_url = config.base_url ~ "/" ~ page_path[0] ~ "/" ~ page_path[1] ~ "/" ~ page.extra.image %}
+  {% endif %}
 {% endif %}
 
 
