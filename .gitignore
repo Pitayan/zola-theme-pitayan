@@ -105,3 +105,6 @@ dist
 
 # Zola cache
 public
+
+# Mac
+.DS_Store
